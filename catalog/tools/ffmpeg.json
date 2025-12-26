@@ -17,9 +17,9 @@
     "win32-x64": ["ffprobe.exe"]
   },
   "download": {
-    "darwin-arm64": "https://github.com/prompt-stack/runtimes/releases/download/v1.0.0/ffmpeg-6.0-darwin-arm64.tar.gz",
-    "darwin-x64": "https://github.com/prompt-stack/runtimes/releases/download/v1.0.0/ffmpeg-6.0-darwin-x64.tar.gz",
-    "linux-x64": "https://github.com/prompt-stack/runtimes/releases/download/v1.0.0/ffmpeg-6.0-linux-x64.tar.gz",
-    "win32-x64": "https://github.com/prompt-stack/runtimes/releases/download/v1.0.0/ffmpeg-6.0-win-x64.tar.gz"
+    "darwin-arm64": "https://github.com/prompt-stack/registry/releases/download/v1.0.0/ffmpeg-6.0-darwin-arm64.tar.gz",
+    "darwin-x64": "https://github.com/prompt-stack/registry/releases/download/v1.0.0/ffmpeg-6.0-darwin-x64.tar.gz",
+    "linux-x64": "https://github.com/prompt-stack/registry/releases/download/v1.0.0/ffmpeg-6.0-linux-x64.tar.gz",
+    "win32-x64": "https://github.com/prompt-stack/registry/releases/download/v1.0.0/ffmpeg-6.0-win-x64.tar.gz"
   }
 }
