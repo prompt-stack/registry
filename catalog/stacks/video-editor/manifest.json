@@ -24,7 +24,9 @@
     "video_remove_silence",
     "video_resize",
     "video_compress",
-    "video_concat"
+    "video_concat",
+    "video_frames",
+    "video_thumbnail"
   ],
   "tags": ["video", "ffmpeg", "editing", "media"],
   "category": "media",
