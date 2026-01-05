@@ -252,6 +252,135 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         required: ["database_id"],
       },
     },
+    {
+      name: "notion_batch_add_rows",
+      description: "Add multiple rows to a Notion database in one operation. Much faster than adding rows one by one.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          database_id: { type: "string", description: "The database ID" },
+          rows: {
+            type: "array",
+            description: "Array of row objects, each with properties matching the database schema",
+            items: { type: "object", additionalProperties: true },
+          },
+        },
+        required: ["database_id", "rows"],
+      },
+    },
+    {
+      name: "notion_update_row",
+      description: "Update an existing row (page) in a Notion database",
+      inputSchema: {
+        type: "object",
+        properties: {
+          page_id: { type: "string", description: "The page/row ID to update" },
+          properties: {
+            type: "object",
+            description: "Properties to update",
+            additionalProperties: true,
+          },
+        },
+        required: ["page_id", "properties"],
+      },
+    },
+    {
+      name: "notion_get_database_schema",
+      description: "Get the schema/properties of a Notion database to understand its structure",
+      inputSchema: {
+        type: "object",
+        properties: {
+          database_id: { type: "string", description: "The database ID" },
+        },
+        required: ["database_id"],
+      },
+    },
+    {
+      name: "notion_search_all_databases",
+      description: "Search across all accessible databases for rows matching a query. Searches title properties.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          query: { type: "string", description: "Search query to match against titles" },
+          limit: { type: "number", description: "Max results per database (default 10)" },
+        },
+        required: ["query"],
+      },
+    },
+    {
+      name: "notion_duplicate_page",
+      description: "Duplicate a Notion page with its content to a new location",
+      inputSchema: {
+        type: "object",
+        properties: {
+          page_id: { type: "string", description: "The page ID to duplicate" },
+          new_parent_id: { type: "string", description: "Parent page ID for the duplicate" },
+          new_title: { type: "string", description: "Optional new title (defaults to 'Copy of [original]')" },
+        },
+        required: ["page_id", "new_parent_id"],
+      },
+    },
+    {
+      name: "notion_add_block",
+      description: "Add a specific block type to a page. Supports: paragraph, heading_1/2/3, bulleted_list_item, numbered_list_item, to_do, toggle, quote, callout, code, divider, table_of_contents, bookmark, embed, image, video",
+      inputSchema: {
+        type: "object",
+        properties: {
+          page_id: { type: "string", description: "The page ID to add block to" },
+          block_type: {
+            type: "string",
+            description: "Block type",
+            enum: ["paragraph", "heading_1", "heading_2", "heading_3", "bulleted_list_item", "numbered_list_item", "to_do", "toggle", "quote", "callout", "code", "divider", "table_of_contents", "bookmark", "embed", "image", "video"]
+          },
+          content: { type: "string", description: "Text content for the block" },
+          url: { type: "string", description: "URL for bookmark/embed/image/video blocks" },
+          language: { type: "string", description: "Programming language for code blocks (default: plain text)" },
+          emoji: { type: "string", description: "Emoji icon for callout blocks (default: 💡)" },
+          checked: { type: "boolean", description: "Checked state for to_do blocks (default: false)" },
+          color: { type: "string", description: "Background color for callout: gray, brown, orange, yellow, green, blue, purple, pink, red" },
+        },
+        required: ["page_id", "block_type"],
+      },
+    },
+    {
+      name: "notion_move_page",
+      description: "Move a page to a new parent (reorganize your Notion structure)",
+      inputSchema: {
+        type: "object",
+        properties: {
+          page_id: { type: "string", description: "The page ID to move" },
+          new_parent_id: { type: "string", description: "New parent page ID" },
+        },
+        required: ["page_id", "new_parent_id"],
+      },
+    },
+    {
+      name: "notion_update_page_properties",
+      description: "Update a page's properties (title, icon, cover)",
+      inputSchema: {
+        type: "object",
+        properties: {
+          page_id: { type: "string", description: "The page ID" },
+          title: { type: "string", description: "New title" },
+          icon_emoji: { type: "string", description: "Emoji icon (e.g. '📚')" },
+          icon_url: { type: "string", description: "External icon URL" },
+          cover_url: { type: "string", description: "Cover image URL" },
+        },
+        required: ["page_id"],
+      },
+    },
+    {
+      name: "notion_get_page_tree",
+      description: "Get the hierarchy/tree of child pages under a page",
+      inputSchema: {
+        type: "object",
+        properties: {
+          page_id: { type: "string", description: "The parent page ID" },
+          depth: { type: "number", description: "How deep to traverse (default: 2)" },
+        },
+        required: ["page_id"],
+      },
+    },
   ],
 }));
 
@@ -267,15 +396,97 @@ function getPageTitle(page: any): string {
   return "(untitled)";
 }
 
-// Helper to convert text to blocks
+// Helper to convert text to blocks (supports basic markdown)
 function textToBlocks(text: string): any[] {
-  return text.split("\n").map((line) => ({
-    object: "block",
-    type: "paragraph",
-    paragraph: {
-      rich_text: [{ type: "text", text: { content: line } }],
-    },
-  }));
+  return text.split("\n").map((line) => {
+    // Headings
+    if (line.startsWith("### ")) {
+      return {
+        object: "block",
+        type: "heading_3",
+        heading_3: { rich_text: [{ type: "text", text: { content: line.slice(4) } }] },
+      };
+    }
+    if (line.startsWith("## ")) {
+      return {
+        object: "block",
+        type: "heading_2",
+        heading_2: { rich_text: [{ type: "text", text: { content: line.slice(3) } }] },
+      };
+    }
+    if (line.startsWith("# ")) {
+      return {
+        object: "block",
+        type: "heading_1",
+        heading_1: { rich_text: [{ type: "text", text: { content: line.slice(2) } }] },
+      };
+    }
+    // Bullet list
+    if (line.startsWith("- ") || line.startsWith("* ")) {
+      return {
+        object: "block",
+        type: "bulleted_list_item",
+        bulleted_list_item: { rich_text: [{ type: "text", text: { content: line.slice(2) } }] },
+      };
+    }
+    // Numbered list
+    if (/^\d+\.\s/.test(line)) {
+      return {
+        object: "block",
+        type: "numbered_list_item",
+        numbered_list_item: { rich_text: [{ type: "text", text: { content: line.replace(/^\d+\.\s/, "") } }] },
+      };
+    }
+    // Checkbox / To-do
+    if (line.startsWith("[ ] ")) {
+      return {
+        object: "block",
+        type: "to_do",
+        to_do: { rich_text: [{ type: "text", text: { content: line.slice(4) } }], checked: false },
+      };
+    }
+    if (line.startsWith("[x] ") || line.startsWith("[X] ")) {
+      return {
+        object: "block",
+        type: "to_do",
+        to_do: { rich_text: [{ type: "text", text: { content: line.slice(4) } }], checked: true },
+      };
+    }
+    // Quote
+    if (line.startsWith("> ")) {
+      return {
+        object: "block",
+        type: "quote",
+        quote: { rich_text: [{ type: "text", text: { content: line.slice(2) } }] },
+      };
+    }
+    // Divider
+    if (line === "---" || line === "***" || line === "___") {
+      return { object: "block", type: "divider", divider: {} };
+    }
+    // Code block (single line with backticks)
+    if (line.startsWith("`") && line.endsWith("`") && line.length > 2) {
+      return {
+        object: "block",
+        type: "code",
+        code: { rich_text: [{ type: "text", text: { content: line.slice(1, -1) } }], language: "plain text" },
+      };
+    }
+    // Callout (custom: starts with emoji or !)
+    if (line.startsWith("! ")) {
+      return {
+        object: "block",
+        type: "callout",
+        callout: { rich_text: [{ type: "text", text: { content: line.slice(2) } }], icon: { emoji: "💡" } },
+      };
+    }
+    // Default: paragraph
+    return {
+      object: "block",
+      type: "paragraph",
+      paragraph: { rich_text: [{ type: "text", text: { content: line } }] },
+    };
+  });
 }
 
 // Helper to extract text from blocks
@@ -452,6 +663,304 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         dbs = dbs.filter((db) => db.id !== args?.database_id);
         saveDatabases(dbs);
         return { content: [{ type: "text", text: "Database removed from tracked list" }] };
+      }
+
+      case "notion_batch_add_rows": {
+        const databaseId = args?.database_id as string;
+        const rows = args?.rows as any[];
+        const results: { url: string; title?: string }[] = [];
+        const errors: string[] = [];
+
+        // Process rows in parallel batches of 10 (Notion rate limit friendly)
+        const batchSize = 10;
+        for (let i = 0; i < rows.length; i += batchSize) {
+          const batch = rows.slice(i, i + batchSize);
+          const promises = batch.map(async (row, idx) => {
+            try {
+              const page = await notion.pages.create({
+                parent: { database_id: databaseId },
+                properties: row,
+              });
+              return { success: true, url: (page as any).url, index: i + idx };
+            } catch (err: any) {
+              return { success: false, error: err.message, index: i + idx };
+            }
+          });
+
+          const batchResults = await Promise.all(promises);
+          for (const result of batchResults) {
+            if (result.success) {
+              results.push({ url: result.url });
+            } else {
+              errors.push(`Row ${result.index}: ${result.error}`);
+            }
+          }
+        }
+
+        const summary = {
+          total: rows.length,
+          succeeded: results.length,
+          failed: errors.length,
+          errors: errors.length > 0 ? errors : undefined,
+        };
+        return {
+          content: [{ type: "text", text: JSON.stringify(summary, null, 2) }],
+        };
+      }
+
+      case "notion_update_row": {
+        const page = await notion.pages.update({
+          page_id: args?.page_id as string,
+          properties: args?.properties as any,
+        });
+        return {
+          content: [{ type: "text", text: `Row updated: ${(page as any).url}` }],
+        };
+      }
+
+      case "notion_get_database_schema": {
+        const db = await notion.databases.retrieve({
+          database_id: args?.database_id as string,
+        });
+        const schema = {
+          id: db.id,
+          title: (db as any).title?.[0]?.plain_text || "(untitled)",
+          properties: Object.entries((db as any).properties).map(([name, prop]: [string, any]) => ({
+            name,
+            type: prop.type,
+            ...(prop.type === "select" && { options: prop.select?.options }),
+            ...(prop.type === "multi_select" && { options: prop.multi_select?.options }),
+            ...(prop.type === "status" && { options: prop.status?.options, groups: prop.status?.groups }),
+          })),
+        };
+        return {
+          content: [{ type: "text", text: JSON.stringify(schema, null, 2) }],
+        };
+      }
+
+      case "notion_search_all_databases": {
+        const query = args?.query as string;
+        const limit = (args?.limit as number) || 10;
+
+        // First get all databases
+        const dbSearch = await notion.search({ query: "", page_size: 100 });
+        const databases = dbSearch.results.filter((item: any) => item.object === "database");
+
+        const allResults: any[] = [];
+
+        // Search each database
+        for (const db of databases) {
+          try {
+            const dbTitle = (db as any).title?.[0]?.plain_text || "(untitled)";
+            const response = await notion.databases.query({
+              database_id: db.id,
+              page_size: limit,
+            });
+
+            // Filter results that match the query in any text property
+            const matchingRows = response.results.filter((row: any) => {
+              const props = row.properties || {};
+              for (const [, value] of Object.entries(props)) {
+                const v = value as any;
+                if (v.type === "title" && v.title?.length > 0) {
+                  const text = v.title.map((t: any) => t.plain_text).join("");
+                  if (text.toLowerCase().includes(query.toLowerCase())) return true;
+                }
+                if (v.type === "rich_text" && v.rich_text?.length > 0) {
+                  const text = v.rich_text.map((t: any) => t.plain_text).join("");
+                  if (text.toLowerCase().includes(query.toLowerCase())) return true;
+                }
+              }
+              return false;
+            });
+
+            if (matchingRows.length > 0) {
+              allResults.push({
+                database: { id: db.id, title: dbTitle },
+                matches: matchingRows.map((row: any) => ({
+                  id: row.id,
+                  url: row.url,
+                  title: getPageTitle(row),
+                })),
+              });
+            }
+          } catch {
+            // Skip databases we can't query
+          }
+        }
+
+        return {
+          content: [{ type: "text", text: JSON.stringify(allResults, null, 2) }],
+        };
+      }
+
+      case "notion_duplicate_page": {
+        const sourcePageId = args?.page_id as string;
+        const newParentId = args?.new_parent_id as string;
+
+        // Get the original page
+        const originalPage = await notion.pages.retrieve({ page_id: sourcePageId });
+        const originalTitle = getPageTitle(originalPage);
+        const newTitle = (args?.new_title as string) || `Copy of ${originalTitle}`;
+
+        // Get the original content blocks
+        const blocks = await notion.blocks.children.list({ block_id: sourcePageId });
+
+        // Create new page
+        const newPage = await notion.pages.create({
+          parent: { page_id: newParentId },
+          properties: {
+            title: { title: [{ text: { content: newTitle } }] },
+          },
+          children: blocks.results.map((block: any) => {
+            // Strip IDs and other metadata that can't be copied
+            const { id, created_time, last_edited_time, created_by, last_edited_by, parent, has_children, archived, ...rest } = block;
+            return rest;
+          }) as any,
+        });
+
+        return {
+          content: [{ type: "text", text: `Page duplicated: ${(newPage as any).url}` }],
+        };
+      }
+
+      case "notion_add_block": {
+        const pageId = args?.page_id as string;
+        const blockType = args?.block_type as string;
+        const content = args?.content as string || "";
+        const url = args?.url as string;
+        const language = args?.language as string || "plain text";
+        const emoji = args?.emoji as string || "💡";
+        const checked = args?.checked as boolean || false;
+        const color = args?.color as string || "gray_background";
+
+        let block: any;
+
+        switch (blockType) {
+          case "paragraph":
+          case "heading_1":
+          case "heading_2":
+          case "heading_3":
+          case "bulleted_list_item":
+          case "numbered_list_item":
+          case "quote":
+            block = { type: blockType, [blockType]: { rich_text: [{ type: "text", text: { content } }] } };
+            break;
+          case "to_do":
+            block = { type: "to_do", to_do: { rich_text: [{ type: "text", text: { content } }], checked } };
+            break;
+          case "toggle":
+            block = { type: "toggle", toggle: { rich_text: [{ type: "text", text: { content } }] } };
+            break;
+          case "callout":
+            block = { type: "callout", callout: { rich_text: [{ type: "text", text: { content } }], icon: { emoji }, color } };
+            break;
+          case "code":
+            block = { type: "code", code: { rich_text: [{ type: "text", text: { content } }], language } };
+            break;
+          case "divider":
+            block = { type: "divider", divider: {} };
+            break;
+          case "table_of_contents":
+            block = { type: "table_of_contents", table_of_contents: {} };
+            break;
+          case "bookmark":
+            block = { type: "bookmark", bookmark: { url } };
+            break;
+          case "embed":
+            block = { type: "embed", embed: { url } };
+            break;
+          case "image":
+            block = { type: "image", image: { type: "external", external: { url } } };
+            break;
+          case "video":
+            block = { type: "video", video: { type: "external", external: { url } } };
+            break;
+          default:
+            return { content: [{ type: "text", text: `Unknown block type: ${blockType}` }], isError: true };
+        }
+
+        await notion.blocks.children.append({
+          block_id: pageId,
+          children: [block],
+        });
+
+        return { content: [{ type: "text", text: `Block added: ${blockType}` }] };
+      }
+
+      case "notion_move_page": {
+        const pageId = args?.page_id as string;
+        const newParentId = args?.new_parent_id as string;
+
+        await notion.pages.update({
+          page_id: pageId,
+          parent: { page_id: newParentId },
+        } as any);
+
+        return { content: [{ type: "text", text: `Page moved to new parent` }] };
+      }
+
+      case "notion_update_page_properties": {
+        const pageId = args?.page_id as string;
+        const updates: any = {};
+
+        if (args?.title) {
+          updates.properties = {
+            title: { title: [{ text: { content: args.title as string } }] },
+          };
+        }
+
+        if (args?.icon_emoji) {
+          updates.icon = { type: "emoji", emoji: args.icon_emoji as string };
+        } else if (args?.icon_url) {
+          updates.icon = { type: "external", external: { url: args.icon_url as string } };
+        }
+
+        if (args?.cover_url) {
+          updates.cover = { type: "external", external: { url: args.cover_url as string } };
+        }
+
+        const page = await notion.pages.update({
+          page_id: pageId,
+          ...updates,
+        });
+
+        return { content: [{ type: "text", text: `Page updated: ${(page as any).url}` }] };
+      }
+
+      case "notion_get_page_tree": {
+        const pageId = args?.page_id as string;
+        const maxDepth = (args?.depth as number) || 2;
+
+        async function getChildren(blockId: string, depth: number): Promise<any[]> {
+          if (depth > maxDepth) return [];
+
+          const blocks = await notion.blocks.children.list({ block_id: blockId });
+          const children: any[] = [];
+
+          for (const block of blocks.results) {
+            if ((block as any).type === "child_page") {
+              const pageInfo = {
+                id: block.id,
+                title: (block as any).child_page?.title || "(untitled)",
+                type: "page",
+                children: await getChildren(block.id, depth + 1),
+              };
+              children.push(pageInfo);
+            } else if ((block as any).type === "child_database") {
+              children.push({
+                id: block.id,
+                title: (block as any).child_database?.title || "(untitled)",
+                type: "database",
+              });
+            }
+          }
+
+          return children;
+        }
+
+        const tree = await getChildren(pageId, 1);
+        return { content: [{ type: "text", text: JSON.stringify(tree, null, 2) }] };
       }
 
       default:

@@ -11,79 +11,121 @@
     "stacks": {
       "official": [
         {
-          "id": "stack:reddit-extractor",
-          "name": "Reddit Extractor",
+          "id": "stack:content-extractor",
+          "name": "Content Extractor",
           "version": "1.0.0",
-          "description": "Extract posts and comments from Reddit threads",
-          "path": "catalog/stacks/reddit-extractor",
-          "runtime": "runtime:python",
+          "description": "Extract content from YouTube, Reddit, TikTok, and web articles",
+          "path": "catalog/stacks/content-extractor",
+          "runtime": "runtime:node",
           "category": "data-extraction",
-          "tags": ["reddit", "web-scraping", "data"],
-          "requires": { "secrets": ["REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET"] }
+          "tags": ["youtube", "reddit", "tiktok", "article", "transcript", "extraction", "scraping"]
         },
         {
-          "id": "stack:deploy-vercel",
-          "name": "Deploy to Vercel",
-          "version": "1.1.0",
-          "description": "Deploy web apps to Vercel",
-          "path": "catalog/stacks/deploy-vercel",
-          "runtime": "runtime:node",
-          "category": "deployment",
-          "tags": ["deploy", "vercel", "hosting"],
-          "requires": { "secrets": ["VERCEL_TOKEN"] }
-        },
-        {
-          "id": "stack:db-neon",
-          "name": "Neon Database",
+          "id": "stack:google-ai",
+          "name": "Google AI Suite",
           "version": "1.0.0",
-          "description": "Create serverless Postgres databases on Neon",
-          "path": "catalog/stacks/db-neon",
+          "description": "Generate images (Gemini, Imagen 4) and videos (Veo 3.1) using Google AI",
+          "path": "catalog/stacks/google-ai",
           "runtime": "runtime:node",
-          "category": "database",
-          "tags": ["database", "postgres", "neon", "serverless"],
-          "requires": { "secrets": ["NEON_API_KEY"] }
+          "category": "ai-generation",
+          "tags": ["ai", "google-ai", "gemini", "imagen", "veo", "image-generation", "video-generation"],
+          "requires": { "secrets": ["GOOGLE_AI_API_KEY"] }
         },
         {
-          "id": "stack:git-manager",
-          "name": "Git Manager",
+          "id": "stack:google-workspace",
+          "name": "Google Workspace",
           "version": "1.0.0",
-          "description": "Initialize repos, commit changes, and push to GitHub",
-          "path": "catalog/stacks/git-manager",
+          "description": "Gmail, Sheets, Docs, Drive, and Calendar integration",
+          "path": "catalog/stacks/google-workspace",
           "runtime": "runtime:node",
-          "category": "source-control",
-          "tags": ["git", "github", "version-control", "repo"],
-          "requires": { "secrets": ["GITHUB_TOKEN"] }
+          "category": "productivity",
+          "tags": ["google", "gmail", "sheets", "docs", "drive", "calendar", "email"],
+          "requires": { "secrets": ["GOOGLE_CREDENTIALS"] }
         },
         {
-          "id": "stack:youtube-transcript-extractor",
-          "name": "YouTube Transcript Extractor",
-          "version": "2.0.0",
-          "description": "Extract transcripts from YouTube videos",
-          "path": "catalog/stacks/youtube-transcript-extractor",
-          "runtime": "runtime:node",
-          "category": "content-extraction",
-          "tags": ["youtube", "transcript", "video", "captions"]
-        },
-        {
-          "id": "stack:pdf-creator",
-          "name": "PDF Creator",
+          "id": "stack:ms-office",
+          "name": "MS Office",
           "version": "1.0.0",
-          "description": "Convert HTML files to PDF documents",
-          "path": "catalog/stacks/pdf-creator",
-          "runtime": "runtime:python",
-          "entry": "create_pdf.py",
+          "description": "Read and extract content from Microsoft Word (.docx) and Excel (.xlsx) documents",
+          "path": "catalog/stacks/ms-office",
+          "runtime": "runtime:node",
           "category": "document-processing",
-          "tags": ["pdf", "conversion", "html"]
+          "tags": ["microsoft", "office", "word", "excel", "docx", "xlsx", "documents"]
         },
         {
-          "id": "stack:artifacts-builder",
-          "name": "Artifacts Builder",
-          "version": "1.0.0",
-          "description": "Build and package project artifacts",
-          "path": "catalog/stacks/artifacts-builder",
+          "id": "stack:notion-workspace",
+          "name": "Notion Workspace",
+          "version": "1.2.0",
+          "description": "Search, create, and manage Notion pages and databases",
+          "path": "catalog/stacks/notion-workspace",
           "runtime": "runtime:node",
-          "category": "utilities",
-          "tags": ["build", "artifacts", "packaging"]
+          "category": "productivity",
+          "tags": ["notion", "productivity", "notes", "databases", "wiki"],
+          "requires": { "secrets": ["NOTION_API_KEY"] }
+        },
+        {
+          "id": "stack:openai",
+          "name": "OpenAI Suite",
+          "version": "1.0.0",
+          "description": "OpenAI tools: DALL-E images, Whisper transcription, TTS speech, Sora video",
+          "path": "catalog/stacks/openai",
+          "runtime": "runtime:node",
+          "category": "ai-generation",
+          "tags": ["ai", "openai", "dalle", "whisper", "tts", "sora", "image-generation", "video-generation", "transcription"],
+          "requires": { "secrets": ["OPENAI_API_KEY"] }
+        },
+        {
+          "id": "stack:slack",
+          "name": "Slack",
+          "version": "1.0.0",
+          "description": "Send messages, search channels, upload files, and manage reactions in Slack",
+          "path": "catalog/stacks/slack",
+          "runtime": "runtime:node",
+          "category": "communication",
+          "tags": ["slack", "messaging", "chat", "team", "communication"],
+          "requires": { "secrets": ["SLACK_BOT_TOKEN"] }
+        },
+        {
+          "id": "stack:social-media",
+          "name": "Social Media",
+          "version": "1.0.0",
+          "description": "Post to Twitter, LinkedIn, Facebook, and Instagram from one unified interface",
+          "path": "catalog/stacks/social-media",
+          "runtime": "runtime:node",
+          "category": "social-media",
+          "tags": ["social-media", "twitter", "linkedin", "facebook", "instagram", "marketing"]
+        },
+        {
+          "id": "stack:video-editor",
+          "name": "Video Editor",
+          "version": "1.0.0",
+          "description": "Edit videos with ffmpeg - trim, speed up, extract clips, remove silence, and more",
+          "path": "catalog/stacks/video-editor",
+          "runtime": "runtime:node",
+          "category": "media",
+          "tags": ["video", "ffmpeg", "editing", "media"],
+          "requires": { "tools": ["ffmpeg"] }
+        },
+        {
+          "id": "stack:web-export",
+          "name": "Web Export",
+          "version": "1.0.0",
+          "description": "Export HTML to high-resolution PNG and PDF with artboard support",
+          "path": "catalog/stacks/web-export",
+          "runtime": "runtime:python",
+          "category": "document-processing",
+          "tags": ["export", "pdf", "png", "html", "artboard", "print", "screenshot"]
+        },
+        {
+          "id": "stack:zoho-mail",
+          "name": "Zoho Mail",
+          "version": "1.0.0",
+          "description": "Send, search, and manage emails via Zoho Mail",
+          "path": "catalog/stacks/zoho-mail",
+          "runtime": "runtime:node",
+          "category": "productivity",
+          "tags": ["zoho", "email", "mail"],
+          "requires": { "secrets": ["ZOHO_CLIENT_ID", "ZOHO_CLIENT_SECRET"] }
         }
       ],
       "community": []
@@ -393,14 +435,14 @@
 
   "categories": {
     "stacks": [
+      { "id": "ai-generation", "name": "AI Generation", "icon": "sparkles" },
+      { "id": "productivity", "name": "Productivity", "icon": "briefcase" },
+      { "id": "communication", "name": "Communication", "icon": "message-circle" },
+      { "id": "social-media", "name": "Social Media", "icon": "share-2" },
       { "id": "data-extraction", "name": "Data Extraction", "icon": "database" },
-      { "id": "deployment", "name": "Deployment", "icon": "rocket" },
-      { "id": "database", "name": "Database", "icon": "server" },
-      { "id": "source-control", "name": "Source Control", "icon": "git-branch" },
-      { "id": "content-extraction", "name": "Content Extraction", "icon": "file-text" },
       { "id": "document-processing", "name": "Document Processing", "icon": "file" },
-      { "id": "frontend", "name": "Frontend", "icon": "layout" },
-      { "id": "ai-tools", "name": "AI Tools", "icon": "cpu" },
+      { "id": "media", "name": "Media", "icon": "video" },
+      { "id": "deployment", "name": "Deployment", "icon": "rocket" },
       { "id": "utilities", "name": "Utilities", "icon": "tool" }
     ],
     "prompts": [

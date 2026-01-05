@@ -1,0 +1,20 @@
+{
+  "id": "web-export",
+  "name": "Web Export",
+  "version": "1.0.0",
+  "description": "Export HTML to high-resolution PNG and PDF. Supports artboards (8.5x11, 16x9, 11x8.5), paginated documents, and newsletters.",
+  "author": "CO-LLAB",
+  "license": "MIT",
+  "runtimes": ["python"],
+  "mcp": {
+    "runtime": "python",
+    "entry": "python/server.py",
+    "command": "python",
+    "args": ["python/server.py"]
+  },
+  "secrets": [],
+  "tools": ["url_to_png", "html_to_png", "html_to_pdf", "html_to_png_pdf"],
+  "tags": ["export", "pdf", "png", "html", "artboard", "print", "screenshot", "playwright"],
+  "category": "document-processing",
+  "icon": "📄"
+}

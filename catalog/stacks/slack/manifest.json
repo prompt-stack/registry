@@ -1,0 +1,43 @@
+{
+  "id": "slack",
+  "name": "Slack",
+  "version": "1.0.0",
+  "description": "Send messages, search channels, upload files, and manage reactions in Slack",
+  "author": "CO-LLAB",
+  "license": "MIT",
+  "runtimes": ["node"],
+  "mcp": {
+    "runtime": "node",
+    "entry": "node/src/index.ts",
+    "command": "npx",
+    "args": ["tsx", "node/src/index.ts"]
+  },
+  "secrets": [
+    {
+      "key": "SLACK_BOT_TOKEN",
+      "label": "Slack Bot Token",
+      "description": "Bot token starting with xoxb-",
+      "helpUrl": "https://api.slack.com/apps",
+      "required": true
+    },
+    {
+      "key": "SLACK_CHANNEL_ID",
+      "label": "Default Channel ID",
+      "description": "Optional default channel for messages",
+      "required": false
+    }
+  ],
+  "tools": [
+    "slack_send_message",
+    "slack_list_channels",
+    "slack_read_channel",
+    "slack_search",
+    "slack_update_message",
+    "slack_add_reaction",
+    "slack_upload_file",
+    "slack_get_user"
+  ],
+  "tags": ["slack", "messaging", "chat", "team", "communication"],
+  "category": "communication",
+  "icon": "💬"
+}

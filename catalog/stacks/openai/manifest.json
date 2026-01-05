@@ -1,0 +1,28 @@
+{
+  "id": "openai",
+  "name": "OpenAI Suite",
+  "version": "1.0.0",
+  "description": "OpenAI tools: DALL-E images, Whisper transcription, TTS speech, Sora video",
+  "author": "CO-LLAB",
+  "license": "MIT",
+  "runtimes": ["node"],
+  "mcp": {
+    "runtime": "node",
+    "entry": "node/src/index.ts",
+    "command": "npx",
+    "args": ["tsx", "node/src/index.ts"]
+  },
+  "secrets": [
+    {
+      "key": "OPENAI_API_KEY",
+      "label": "OpenAI API Key",
+      "description": "API key for OpenAI (DALL-E, Whisper, TTS, Sora)",
+      "helpUrl": "https://platform.openai.com/api-keys",
+      "required": true
+    }
+  ],
+  "tools": ["generate_image", "transcribe_audio", "text_to_speech", "generate_video"],
+  "tags": ["ai", "openai", "dalle", "whisper", "tts", "sora", "image-generation", "video-generation", "transcription"],
+  "category": "ai-generation",
+  "icon": "🤖"
+}

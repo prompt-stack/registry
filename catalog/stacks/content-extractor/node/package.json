@@ -1,0 +1,27 @@
+{
+  "name": "content-extractor",
+  "version": "1.0.0",
+  "description": "Content extraction MCP - YouTube, Reddit, TikTok, Articles",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "npx tsx src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@mozilla/readability": "^0.5.0",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.6.1",
+    "html-entities": "^2.5.2",
+    "jsdom": "^24.0.0",
+    "turndown": "^7.1.2",
+    "youtube-transcript": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/turndown": "^5.0.4",
+    "tsx": "^4.21.0",
+    "typescript": "^5.3.0"
+  }
+}

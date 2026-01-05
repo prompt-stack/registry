@@ -1,0 +1,20 @@
+{
+  "id": "ms-office",
+  "name": "MS Office",
+  "version": "1.0.0",
+  "description": "Read and extract content from Microsoft Word (.docx) and Excel (.xlsx) documents",
+  "author": "CO-LLAB",
+  "license": "MIT",
+  "runtimes": ["node", "python"],
+  "mcp": {
+    "runtime": "node",
+    "entry": "node/src/index.ts",
+    "command": "npx",
+    "args": ["tsx", "node/src/index.ts"]
+  },
+  "secrets": [],
+  "tools": ["docx_read", "xlsx_read"],
+  "tags": ["microsoft", "office", "word", "excel", "docx", "xlsx", "documents"],
+  "category": "document-processing",
+  "icon": "📄"
+}
