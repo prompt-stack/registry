@@ -1,13 +1,12 @@
 {
-  "id": "vercel",
+  "id": "tool:vercel",
   "name": "Vercel CLI",
   "version": "latest",
   "description": "Deploy to Vercel",
-  "bundled": false,
+  "category": "devops",
   "installType": "npm",
   "npmPackage": "vercel",
-  "binary": "vercel/node_modules/.bin/vercel",
-  "installDir": "vercel",
+  "binary": "vercel",
   "requiresAuth": true,
-  "authInstructions": "Run 'vercel login' to authenticate"
+  "authCommand": "vercel login"
 }

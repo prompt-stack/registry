@@ -1,12 +1,17 @@
 {
-  "id": "jq",
+  "id": "tool:jq",
   "name": "jq",
-  "version": "1.7",
-  "description": "JSON processor for parsing API responses",
-  "bundled": false,
-  "binary": "jq/jq",
-  "download": {
-    "darwin-arm64": "jq-1.7-darwin-arm64.tar.gz",
-    "darwin-x64": "jq-1.7-darwin-x64.tar.gz"
+  "version": "1.7.1",
+  "description": "Command-line JSON processor",
+  "category": "data",
+  "installType": "binary",
+  "binary": "jq",
+  "upstream": {
+    "darwin-arm64": "https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-arm64",
+    "darwin-x64": "https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-amd64",
+    "linux-x64": "https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-amd64"
+  },
+  "extract": {
+    "default": { "type": "raw", "chmod": true }
   }
 }

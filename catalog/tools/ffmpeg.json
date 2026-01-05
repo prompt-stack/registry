@@ -1,25 +1,20 @@
 {
-  "id": "ffmpeg",
+  "id": "tool:ffmpeg",
   "name": "FFmpeg",
-  "version": "6.0",
+  "version": "7.1",
   "description": "Audio/video processing toolkit",
-  "bundled": false,
-  "binary": {
-    "darwin-arm64": "ffmpeg",
-    "darwin-x64": "ffmpeg",
-    "linux-x64": "ffmpeg",
-    "win32-x64": "ffmpeg.exe"
+  "category": "media",
+  "installType": "binary",
+  "binary": "ffmpeg",
+  "additionalBinaries": ["ffprobe"],
+  "upstream": {
+    "darwin-arm64": "https://evermeet.cx/ffmpeg/ffmpeg-7.1.zip",
+    "darwin-x64": "https://evermeet.cx/ffmpeg/ffmpeg-7.1.zip",
+    "linux-x64": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz"
   },
-  "additionalBinaries": {
-    "darwin-arm64": ["ffprobe"],
-    "darwin-x64": ["ffprobe"],
-    "linux-x64": ["ffprobe"],
-    "win32-x64": ["ffprobe.exe"]
-  },
-  "download": {
-    "darwin-arm64": "https://github.com/prompt-stack/registry/releases/download/v1.0.0/ffmpeg-6.0-darwin-arm64.tar.gz",
-    "darwin-x64": "https://github.com/prompt-stack/registry/releases/download/v1.0.0/ffmpeg-6.0-darwin-x64.tar.gz",
-    "linux-x64": "https://github.com/prompt-stack/registry/releases/download/v1.0.0/ffmpeg-6.0-linux-x64.tar.gz",
-    "win32-x64": "https://github.com/prompt-stack/registry/releases/download/v1.0.0/ffmpeg-6.0-win-x64.tar.gz"
+  "extract": {
+    "darwin-arm64": { "type": "zip", "binary": "ffmpeg" },
+    "darwin-x64": { "type": "zip", "binary": "ffmpeg" },
+    "linux-x64": { "type": "tar.xz", "binary": "ffmpeg-*-amd64-static/ffmpeg" }
   }
 }

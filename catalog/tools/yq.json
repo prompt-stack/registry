@@ -1,12 +1,17 @@
 {
-  "id": "yq",
+  "id": "tool:yq",
   "name": "yq",
-  "version": "4.40",
+  "version": "4.44.6",
   "description": "YAML processor (like jq but for YAML)",
-  "bundled": false,
-  "binary": "yq/yq",
-  "download": {
-    "darwin-arm64": "yq-4.40-darwin-arm64.tar.gz",
-    "darwin-x64": "yq-4.40-darwin-x64.tar.gz"
+  "category": "data",
+  "installType": "binary",
+  "binary": "yq",
+  "upstream": {
+    "darwin-arm64": "https://github.com/mikefarah/yq/releases/download/v4.44.6/yq_darwin_arm64",
+    "darwin-x64": "https://github.com/mikefarah/yq/releases/download/v4.44.6/yq_darwin_amd64",
+    "linux-x64": "https://github.com/mikefarah/yq/releases/download/v4.44.6/yq_linux_amd64"
+  },
+  "extract": {
+    "default": { "type": "raw", "chmod": true }
   }
 }
