@@ -3,13 +3,43 @@
   "name": "Anthropic Agent SDK",
   "version": "1.0.0",
   "description": "Build autonomous AI agents with Claude. Access Opus 4.5, Sonnet 4.5, and Haiku 4.5 models with built-in tools for file operations, web search, and custom MCP tools.",
-  "author": "CO-LLAB",
-  "license": "MIT",
   "runtime": "multi",
-  "runtimes": ["python", "node"],
-  "entrypoints": {
-    "python": "python/api.py",
-    "node": "typescript/api.ts"
+  "command": [
+    "node",
+    "typescript/api.ts"
+  ],
+  "provides": {
+    "tools": []
+  },
+  "requires": {
+    "binaries": [],
+    "secrets": [
+      {
+        "description": "API key for accessing Claude models",
+        "label": "Anthropic API Key",
+        "link": "https://console.anthropic.com/settings/keys",
+        "name": "ANTHROPIC_API_KEY"
+      }
+    ]
+  },
+  "meta": {
+    "author": "CO-LLAB",
+    "license": "MIT",
+    "category": "ai-agents",
+    "tags": [
+      "ai",
+      "anthropic",
+      "claude",
+      "agent",
+      "sdk",
+      "opus",
+      "sonnet",
+      "haiku",
+      "mcp",
+      "tools",
+      "autonomous"
+    ],
+    "icon": "🤖"
   },
   "inputs": [
     {
@@ -24,7 +54,11 @@
       "description": "Claude model to use",
       "required": false,
       "default": "claude-sonnet-4-5-20250929",
-      "options": ["claude-opus-4-5-20251101", "claude-sonnet-4-5-20250929", "claude-haiku-4-5-20251001"]
+      "options": [
+        "claude-opus-4-5-20251101",
+        "claude-sonnet-4-5-20250929",
+        "claude-haiku-4-5-20251001"
+      ]
     },
     {
       "name": "tools",
@@ -68,16 +102,12 @@
     "python": ">=3.10",
     "node": ">=18.0.0"
   },
-  "secrets": [
-    {
-      "key": "ANTHROPIC_API_KEY",
-      "label": "Anthropic API Key",
-      "description": "API key for accessing Claude models",
-      "helpUrl": "https://console.anthropic.com/settings/keys",
-      "required": true
-    }
-  ],
-  "tags": ["ai", "anthropic", "claude", "agent", "sdk", "opus", "sonnet", "haiku", "mcp", "tools", "autonomous"],
-  "category": "ai-agents",
-  "icon": "🤖"
+  "entrypoints": {
+    "python": "python/api.py",
+    "node": "typescript/api.ts"
+  },
+  "runtimes": [
+    "python",
+    "node"
+  ]
 }

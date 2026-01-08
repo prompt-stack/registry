@@ -3,19 +3,27 @@ id: example-stack
 name: Example Stack
 version: 1.0.0
 description: Short description of what this stack does
-author: Your Name
 runtime: python  # python | node | shell
-entrypoint: main.py
-icon: "🔧"
-category: utilities
-tags: [example, template]
-
-# Optional: secrets this stack needs
-secrets:
-  - key: API_KEY
-    label: API Key
-    required: false
-    helpUrl: https://example.com/get-api-key
+command:
+  - python3
+  - python/src/server.py
+provides:
+  tools:
+    - example_tool
+requires:
+  binaries:
+    - ffmpeg
+  secrets:
+    - name: API_KEY
+      label: API Key
+      required: false
+      link: https://example.com/get-api-key
+meta:
+  author: Your Name
+  license: MIT
+  category: utilities
+  tags: [example, template]
+  icon: "🔧"
 ---
 
 # Example Stack

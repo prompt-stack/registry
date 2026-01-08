@@ -27,7 +27,7 @@ from faster_whisper import WhisperModel
 # CONFIGURATION
 # ============================================================================
 
-DEFAULT_OUTPUT_DIR = Path.home() / ".prompt-stack" / "output"
+DEFAULT_OUTPUT_DIR = Path.home() / ".rudi" / "output"
 DEFAULT_MODEL = os.environ.get("WHISPER_MODEL", "base")
 COMPUTE_TYPE = os.environ.get("WHISPER_COMPUTE_TYPE", "int8")  # int8, float16, float32
 

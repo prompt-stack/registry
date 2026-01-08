@@ -3,17 +3,35 @@
   "name": "Reddit Extractor",
   "version": "1.0.0",
   "description": "Extract Reddit posts and comments with structured content",
-  "author": "CO-LLAB",
-  "license": "MIT",
-  "runtimes": ["python", "node"],
-  "mcp": {
-    "runtime": "node",
-    "entry": "node/src/index.ts",
-    "command": "npx",
-    "args": ["tsx", "node/src/index.ts"]
+  "runtime": "node",
+  "command": [
+    "npx",
+    "tsx",
+    "node/src/index.ts"
+  ],
+  "provides": {
+    "tools": [
+      "extract_reddit"
+    ]
   },
-  "tools": ["extract_reddit"],
-  "tags": ["reddit", "social", "extraction", "scraping"],
-  "category": "data-extraction",
-  "icon": "🤖"
+  "requires": {
+    "binaries": [],
+    "secrets": []
+  },
+  "meta": {
+    "author": "CO-LLAB",
+    "license": "MIT",
+    "category": "data-extraction",
+    "tags": [
+      "reddit",
+      "social",
+      "extraction",
+      "scraping"
+    ],
+    "icon": "🤖"
+  },
+  "runtimes": [
+    "python",
+    "node"
+  ]
 }

@@ -1,0 +1,13 @@
+{
+  "id": "binary:httpie",
+  "name": "HTTPie",
+  "version": "latest",
+  "description": "Modern HTTP client for API testing",
+  "category": "utilities",
+  "installType": "pip",
+  "pipPackage": "httpie",
+  "binary": "http",
+  "requires": [
+    "runtime:python"
+  ]
+}

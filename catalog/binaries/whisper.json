@@ -1,0 +1,16 @@
+{
+  "id": "whisper",
+  "name": "Whisper",
+  "version": "1.0.0",
+  "description": "OpenAI Whisper speech-to-text (local whisper.cpp)",
+  "bundled": false,
+  "binary": {
+    "darwin-arm64": "bin/whisper-cli",
+    "darwin-x64": "bin/whisper-cli"
+  },
+  "download": {
+    "darwin-arm64": "https://github.com/learn-rudi/registry/releases/download/v1.0.0/whisper-darwin-arm64.tar.gz",
+    "darwin-x64": "https://github.com/learn-rudi/registry/releases/download/v1.0.0/whisper-darwin-x64.tar.gz"
+  },
+  "additionalFiles": ["models/ggml-base.en.bin", "lib/"]
+}

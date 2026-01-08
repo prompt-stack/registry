@@ -3,31 +3,45 @@
   "name": "Content Extractor",
   "version": "1.0.0",
   "description": "Extract content from YouTube, Reddit, TikTok, and web articles",
-  "author": "CO-LLAB",
-  "license": "MIT",
-  "runtimes": ["node"],
-  "mcp": {
-    "runtime": "node",
-    "entry": "node/src/index.ts",
-    "command": "npx",
-    "args": ["tsx", "node/src/index.ts"]
+  "runtime": "node",
+  "command": [
+    "npx",
+    "tsx",
+    "src/index.ts"
+  ],
+  "provides": {
+    "tools": [
+      "extract_youtube",
+      "extract_reddit",
+      "extract_tiktok",
+      "extract_article"
+    ]
   },
-  "secrets": [
-    {
-      "key": "SUPA_DATA_API",
-      "label": "Supadata API Key",
-      "description": "Optional - Supadata API for faster YouTube transcript extraction",
-      "helpUrl": "https://supadata.ai",
-      "required": false
-    }
-  ],
-  "tools": [
-    "extract_youtube",
-    "extract_reddit",
-    "extract_tiktok",
-    "extract_article"
-  ],
-  "tags": ["youtube", "reddit", "tiktok", "article", "transcript", "extraction", "scraping"],
-  "category": "data-extraction",
-  "icon": "📥"
+  "requires": {
+    "binaries": [],
+    "secrets": [
+      {
+        "description": "Optional - Supadata API for faster YouTube transcript extraction",
+        "label": "Supadata API Key",
+        "link": "https://supadata.ai",
+        "required": false,
+        "name": "SUPA_DATA_API"
+      }
+    ]
+  },
+  "meta": {
+    "author": "CO-LLAB",
+    "license": "MIT",
+    "category": "data-extraction",
+    "tags": [
+      "youtube",
+      "reddit",
+      "tiktok",
+      "article",
+      "transcript",
+      "extraction",
+      "scraping"
+    ],
+    "icon": "📥"
+  }
 }

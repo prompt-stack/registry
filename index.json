@@ -1,12 +1,11 @@
 {
-  "$schema": "https://prompt-stack.dev/schemas/registry-v2.json",
+  "$schema": "https://learnrudi.com/schemas/registry-v2.json",
   "version": "2.0.0",
-  "name": "Prompt Stack Registry",
-  "description": "Official and community-contributed stacks, prompts, runtimes, tools, and agents for Prompt Stack",
-  "maintainer": "prompt-stack",
-  "repository": "https://github.com/prompt-stack/registry",
+  "name": "RUDI Registry",
+  "description": "Official and community-contributed stacks, prompts, runtimes, binaries, and agents for RUDI",
+  "maintainer": "learn-rudi",
+  "repository": "https://github.com/learn-rudi/registry",
   "lastUpdated": "2025-12-24T00:00:00Z",
-
   "packages": {
     "stacks": {
       "official": [
@@ -18,7 +17,15 @@
           "path": "catalog/stacks/content-extractor",
           "runtime": "runtime:node",
           "category": "data-extraction",
-          "tags": ["youtube", "reddit", "tiktok", "article", "transcript", "extraction", "scraping"]
+          "tags": [
+            "youtube",
+            "reddit",
+            "tiktok",
+            "article",
+            "transcript",
+            "extraction",
+            "scraping"
+          ]
         },
         {
           "id": "stack:google-ai",
@@ -28,8 +35,20 @@
           "path": "catalog/stacks/google-ai",
           "runtime": "runtime:node",
           "category": "ai-generation",
-          "tags": ["ai", "google-ai", "gemini", "imagen", "veo", "image-generation", "video-generation"],
-          "requires": { "secrets": ["GOOGLE_AI_API_KEY"] }
+          "tags": [
+            "ai",
+            "google-ai",
+            "gemini",
+            "imagen",
+            "veo",
+            "image-generation",
+            "video-generation"
+          ],
+          "requires": {
+            "secrets": [
+              "GOOGLE_AI_API_KEY"
+            ]
+          }
         },
         {
           "id": "stack:google-workspace",
@@ -39,8 +58,20 @@
           "path": "catalog/stacks/google-workspace",
           "runtime": "runtime:node",
           "category": "productivity",
-          "tags": ["google", "gmail", "sheets", "docs", "drive", "calendar", "email"],
-          "requires": { "secrets": ["GOOGLE_CREDENTIALS"] }
+          "tags": [
+            "google",
+            "gmail",
+            "sheets",
+            "docs",
+            "drive",
+            "calendar",
+            "email"
+          ],
+          "requires": {
+            "secrets": [
+              "GOOGLE_CREDENTIALS"
+            ]
+          }
         },
         {
           "id": "stack:ms-office",
@@ -50,7 +81,15 @@
           "path": "catalog/stacks/ms-office",
           "runtime": "runtime:node",
           "category": "document-processing",
-          "tags": ["microsoft", "office", "word", "excel", "docx", "xlsx", "documents"]
+          "tags": [
+            "microsoft",
+            "office",
+            "word",
+            "excel",
+            "docx",
+            "xlsx",
+            "documents"
+          ]
         },
         {
           "id": "stack:notion-workspace",
@@ -60,8 +99,18 @@
           "path": "catalog/stacks/notion-workspace",
           "runtime": "runtime:node",
           "category": "productivity",
-          "tags": ["notion", "productivity", "notes", "databases", "wiki"],
-          "requires": { "secrets": ["NOTION_API_KEY"] }
+          "tags": [
+            "notion",
+            "productivity",
+            "notes",
+            "databases",
+            "wiki"
+          ],
+          "requires": {
+            "secrets": [
+              "NOTION_API_KEY"
+            ]
+          }
         },
         {
           "id": "stack:openai",
@@ -71,8 +120,22 @@
           "path": "catalog/stacks/openai",
           "runtime": "runtime:node",
           "category": "ai-generation",
-          "tags": ["ai", "openai", "dalle", "whisper", "tts", "sora", "image-generation", "video-generation", "transcription"],
-          "requires": { "secrets": ["OPENAI_API_KEY"] }
+          "tags": [
+            "ai",
+            "openai",
+            "dalle",
+            "whisper",
+            "tts",
+            "sora",
+            "image-generation",
+            "video-generation",
+            "transcription"
+          ],
+          "requires": {
+            "secrets": [
+              "OPENAI_API_KEY"
+            ]
+          }
         },
         {
           "id": "stack:slack",
@@ -82,8 +145,18 @@
           "path": "catalog/stacks/slack",
           "runtime": "runtime:node",
           "category": "communication",
-          "tags": ["slack", "messaging", "chat", "team", "communication"],
-          "requires": { "secrets": ["SLACK_BOT_TOKEN"] }
+          "tags": [
+            "slack",
+            "messaging",
+            "chat",
+            "team",
+            "communication"
+          ],
+          "requires": {
+            "secrets": [
+              "SLACK_BOT_TOKEN"
+            ]
+          }
         },
         {
           "id": "stack:social-media",
@@ -93,7 +166,14 @@
           "path": "catalog/stacks/social-media",
           "runtime": "runtime:node",
           "category": "social-media",
-          "tags": ["social-media", "twitter", "linkedin", "facebook", "instagram", "marketing"]
+          "tags": [
+            "social-media",
+            "twitter",
+            "linkedin",
+            "facebook",
+            "instagram",
+            "marketing"
+          ]
         },
         {
           "id": "stack:video-editor",
@@ -103,8 +183,17 @@
           "path": "catalog/stacks/video-editor",
           "runtime": "runtime:node",
           "category": "media",
-          "tags": ["video", "ffmpeg", "editing", "media"],
-          "requires": { "tools": ["ffmpeg"] }
+          "tags": [
+            "video",
+            "ffmpeg",
+            "editing",
+            "media"
+          ],
+          "requires": {
+            "binaries": [
+              "ffmpeg"
+            ]
+          }
         },
         {
           "id": "stack:web-export",
@@ -114,7 +203,15 @@
           "path": "catalog/stacks/web-export",
           "runtime": "runtime:python",
           "category": "document-processing",
-          "tags": ["export", "pdf", "png", "html", "artboard", "print", "screenshot"]
+          "tags": [
+            "export",
+            "pdf",
+            "png",
+            "html",
+            "artboard",
+            "print",
+            "screenshot"
+          ]
         },
         {
           "id": "stack:zoho-mail",
@@ -124,8 +221,17 @@
           "path": "catalog/stacks/zoho-mail",
           "runtime": "runtime:node",
           "category": "productivity",
-          "tags": ["zoho", "email", "mail"],
-          "requires": { "secrets": ["ZOHO_CLIENT_ID", "ZOHO_CLIENT_SECRET"] }
+          "tags": [
+            "zoho",
+            "email",
+            "mail"
+          ],
+          "requires": {
+            "secrets": [
+              "ZOHO_CLIENT_ID",
+              "ZOHO_CLIENT_SECRET"
+            ]
+          }
         },
         {
           "id": "stack:whisper",
@@ -135,8 +241,19 @@
           "path": "catalog/stacks/whisper",
           "runtime": "runtime:python",
           "category": "ai-local",
-          "tags": ["whisper", "transcription", "audio", "local", "offline", "speech-to-text"],
-          "requires": { "runtimes": ["runtime:python"] }
+          "tags": [
+            "whisper",
+            "transcription",
+            "audio",
+            "local",
+            "offline",
+            "speech-to-text"
+          ],
+          "requires": {
+            "runtimes": [
+              "runtime:python"
+            ]
+          }
         },
         {
           "id": "stack:postgres",
@@ -146,23 +263,161 @@
           "path": "catalog/stacks/postgres",
           "runtime": "runtime:node",
           "category": "data",
-          "tags": ["postgres", "postgresql", "database", "sql", "neon", "railway", "supabase"],
-          "requires": { "secrets": ["DATABASE_URL"] }
+          "tags": [
+            "postgres",
+            "postgresql",
+            "database",
+            "sql",
+            "neon",
+            "railway",
+            "supabase"
+          ],
+          "requires": {
+            "secrets": [
+              "DATABASE_URL"
+            ]
+          }
+        },
+        {
+          "id": "stack:sqlite",
+          "name": "SQLite",
+          "version": "1.0.0",
+          "description": "Query and manage SQLite databases. Perfect for local databases and RUDI sessions.",
+          "path": "catalog/stacks/sqlite",
+          "runtime": "runtime:node",
+          "category": "data",
+          "tags": [
+            "sqlite",
+            "database",
+            "sql",
+            "local",
+            "rudi"
+          ],
+          "requires": {
+            "secrets": [
+              "SQLITE_DB_PATH"
+            ]
+          }
+        },
+        {
+          "id": "stack:github",
+          "name": "GitHub",
+          "version": "1.0.0",
+          "description": "Manage GitHub repos, PRs, issues, and code search",
+          "path": "catalog/stacks/github",
+          "runtime": "runtime:node",
+          "category": "development",
+          "tags": [
+            "github",
+            "git",
+            "repos",
+            "prs",
+            "issues",
+            "code"
+          ],
+          "requires": {
+            "secrets": [
+              "GITHUB_TOKEN"
+            ]
+          }
+        },
+        {
+          "id": "stack:airtable",
+          "name": "Airtable",
+          "version": "1.0.0",
+          "description": "Query and manage Airtable bases, tables, and records",
+          "path": "catalog/stacks/airtable",
+          "runtime": "runtime:node",
+          "category": "productivity",
+          "tags": [
+            "airtable",
+            "database",
+            "spreadsheet",
+            "no-code"
+          ],
+          "requires": {
+            "secrets": [
+              "AIRTABLE_API_KEY"
+            ]
+          }
+        },
+        {
+          "id": "stack:stripe",
+          "name": "Stripe",
+          "version": "1.0.0",
+          "description": "Manage Stripe payments, customers, invoices, and subscriptions",
+          "path": "catalog/stacks/stripe",
+          "runtime": "runtime:node",
+          "category": "business",
+          "tags": [
+            "stripe",
+            "payments",
+            "invoices",
+            "subscriptions",
+            "billing"
+          ],
+          "requires": {
+            "secrets": [
+              "STRIPE_API_KEY"
+            ]
+          }
+        },
+        {
+          "id": "stack:data-analysis",
+          "name": "Data Analysis",
+          "version": "1.0.0",
+          "description": "Analyze data with Python, pandas, numpy, and matplotlib. Generate charts and insights.",
+          "path": "catalog/stacks/data-analysis",
+          "runtime": "runtime:python",
+          "category": "data",
+          "tags": [
+            "data",
+            "analysis",
+            "python",
+            "pandas",
+            "charts",
+            "visualization"
+          ]
+        },
+        {
+          "id": "stack:finance",
+          "name": "Finance",
+          "version": "1.0.0",
+          "description": "Stock market data, crypto prices, financial analysis, and portfolio tracking",
+          "path": "catalog/stacks/finance",
+          "runtime": "runtime:python",
+          "category": "finance",
+          "tags": [
+            "stocks",
+            "crypto",
+            "finance",
+            "market",
+            "portfolio",
+            "trading"
+          ],
+          "requires": {
+            "secrets": [
+              "ALPHA_VANTAGE_API_KEY"
+            ]
+          }
         }
       ],
       "community": []
     },
-
     "prompts": {
       "official": [
         {
           "id": "prompt:getting-started",
           "name": "Getting Started",
           "version": "1.0.0",
-          "description": "Welcome guide for new Prompt Stack users",
+          "description": "Welcome guide for new RUDI users",
           "path": "catalog/prompts/getting-started.md",
           "category": "general",
-          "tags": ["welcome", "onboarding", "tutorial"]
+          "tags": [
+            "welcome",
+            "onboarding",
+            "tutorial"
+          ]
         },
         {
           "id": "prompt:explain",
@@ -171,7 +426,11 @@
           "description": "Break down complex code or concepts clearly",
           "path": "catalog/prompts/explain.md",
           "category": "coding",
-          "tags": ["learning", "education", "concepts"]
+          "tags": [
+            "learning",
+            "education",
+            "concepts"
+          ]
         },
         {
           "id": "prompt:code-review",
@@ -180,7 +439,11 @@
           "description": "Review code for bugs, style, and improvements",
           "path": "catalog/prompts/code-review.md",
           "category": "coding",
-          "tags": ["review", "quality", "feedback"]
+          "tags": [
+            "review",
+            "quality",
+            "feedback"
+          ]
         },
         {
           "id": "prompt:fix-error",
@@ -189,7 +452,11 @@
           "description": "Debug and resolve errors systematically",
           "path": "catalog/prompts/fix-error.md",
           "category": "coding",
-          "tags": ["debug", "error", "troubleshooting"]
+          "tags": [
+            "debug",
+            "error",
+            "troubleshooting"
+          ]
         },
         {
           "id": "prompt:summarize",
@@ -198,7 +465,11 @@
           "description": "Condense documents, code, or conversations",
           "path": "catalog/prompts/summarize.md",
           "category": "writing",
-          "tags": ["summary", "condensing", "tldr"]
+          "tags": [
+            "summary",
+            "condensing",
+            "tldr"
+          ]
         },
         {
           "id": "prompt:brainstorm",
@@ -207,7 +478,11 @@
           "description": "Generate creative ideas and explore possibilities",
           "path": "catalog/prompts/brainstorm.md",
           "category": "creative",
-          "tags": ["ideas", "creativity", "exploration"]
+          "tags": [
+            "ideas",
+            "creativity",
+            "exploration"
+          ]
         },
         {
           "id": "prompt:write-email",
@@ -216,7 +491,11 @@
           "description": "Draft professional, clear emails",
           "path": "catalog/prompts/write-email.md",
           "category": "writing",
-          "tags": ["email", "communication", "professional"]
+          "tags": [
+            "email",
+            "communication",
+            "professional"
+          ]
         },
         {
           "id": "prompt:organize-files",
@@ -225,12 +504,15 @@
           "description": "Help organize and structure files and folders",
           "path": "catalog/prompts/organize-files.md",
           "category": "utilities",
-          "tags": ["files", "organization", "structure"]
+          "tags": [
+            "files",
+            "organization",
+            "structure"
+          ]
         }
       ],
       "community": []
     },
-
     "runtimes": {
       "official": [
         {
@@ -240,7 +522,12 @@
           "description": "JavaScript runtime built on Chrome's V8 engine",
           "path": "catalog/runtimes/node.json",
           "bundled": true,
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64", "win32-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64",
+            "win32-x64"
+          ]
         },
         {
           "id": "runtime:python",
@@ -248,7 +535,12 @@
           "version": "3.12",
           "description": "Python interpreter for data science and scripting",
           "path": "catalog/runtimes/python.json",
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64", "win32-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64",
+            "win32-x64"
+          ]
         },
         {
           "id": "runtime:deno",
@@ -256,7 +548,10 @@
           "version": "1.40",
           "description": "Secure runtime for JavaScript and TypeScript",
           "path": "catalog/runtimes/deno.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         },
         {
           "id": "runtime:bun",
@@ -264,211 +559,281 @@
           "version": "1.0",
           "description": "Fast all-in-one JavaScript runtime and toolkit",
           "path": "catalog/runtimes/bun.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         }
       ],
       "community": []
     },
-
-    "tools": {
+    "binaries": {
       "official": [
         {
-          "id": "tool:ripgrep",
+          "id": "binary:ripgrep",
           "name": "ripgrep",
           "version": "14.0",
           "description": "Fast text search (used by agents)",
-          "path": "catalog/tools/ripgrep.json",
+          "path": "catalog/binaries/ripgrep.json",
           "bundled": true,
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
-          "id": "tool:git",
+          "id": "binary:git",
           "name": "Git",
           "version": "2.43",
           "description": "Distributed version control system",
-          "path": "catalog/tools/git.json",
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64", "win32-x64"]
+          "path": "catalog/binaries/git.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64",
+            "win32-x64"
+          ]
         },
         {
-          "id": "tool:ffmpeg",
+          "id": "binary:ffmpeg",
           "name": "FFmpeg",
           "version": "6.0",
           "description": "Audio and video processing toolkit",
-          "path": "catalog/tools/ffmpeg.json",
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64", "win32-x64"]
+          "path": "catalog/binaries/ffmpeg.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64",
+            "win32-x64"
+          ]
         },
         {
-          "id": "tool:whisper",
+          "id": "binary:whisper",
           "name": "Whisper",
           "version": "1.0.0",
           "description": "OpenAI Whisper speech-to-text (local)",
-          "path": "catalog/tools/whisper.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "path": "catalog/binaries/whisper.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         },
         {
-          "id": "tool:imagemagick",
+          "id": "binary:imagemagick",
           "name": "ImageMagick",
           "version": "7.1",
           "description": "Image manipulation and conversion",
-          "path": "catalog/tools/imagemagick.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "path": "catalog/binaries/imagemagick.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         },
         {
-          "id": "tool:pandoc",
+          "id": "binary:pandoc",
           "name": "Pandoc",
           "version": "3.5",
           "description": "Universal document converter",
-          "path": "catalog/tools/pandoc.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "path": "catalog/binaries/pandoc.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         },
         {
-          "id": "tool:chromium",
+          "id": "binary:chromium",
           "name": "Chromium",
           "version": "131",
           "description": "Headless browser for automation and scraping",
-          "path": "catalog/tools/chromium.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "path": "catalog/binaries/chromium.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         },
         {
-          "id": "tool:jq",
+          "id": "binary:jq",
           "name": "jq",
           "version": "1.7",
           "description": "Command-line JSON processor",
-          "path": "catalog/tools/jq.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "path": "catalog/binaries/jq.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         },
         {
-          "id": "tool:yq",
+          "id": "binary:yq",
           "name": "yq",
           "version": "4.40",
           "description": "Command-line YAML processor",
-          "path": "catalog/tools/yq.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "path": "catalog/binaries/yq.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         },
         {
-          "id": "tool:sqlite",
+          "id": "binary:sqlite",
           "name": "SQLite",
           "version": "3.44",
           "description": "Embedded SQL database engine",
-          "path": "catalog/tools/sqlite.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "path": "catalog/binaries/sqlite.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         },
         {
-          "id": "tool:ytdlp",
+          "id": "binary:ytdlp",
           "name": "yt-dlp",
           "version": "2024.01",
           "description": "Video downloader for YouTube and other sites",
-          "path": "catalog/tools/ytdlp.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "path": "catalog/binaries/ytdlp.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         },
         {
-          "id": "tool:rclone",
+          "id": "binary:rclone",
           "name": "rclone",
           "version": "1.68",
           "description": "Cloud storage sync and management",
-          "path": "catalog/tools/rclone.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "path": "catalog/binaries/rclone.json",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         },
         {
-          "id": "tool:vercel",
+          "id": "binary:vercel",
           "name": "Vercel CLI",
           "version": "latest",
           "description": "Deploy to Vercel",
-          "path": "catalog/tools/vercel.json",
+          "path": "catalog/binaries/vercel.json",
           "installType": "npm",
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
-          "id": "tool:netlify",
+          "id": "binary:netlify",
           "name": "Netlify CLI",
           "version": "latest",
           "description": "Deploy to Netlify",
-          "path": "catalog/tools/netlify.json",
+          "path": "catalog/binaries/netlify.json",
           "installType": "npm",
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
-          "id": "tool:supabase",
+          "id": "binary:supabase",
           "name": "Supabase CLI",
           "version": "latest",
           "description": "Supabase local development and deployment",
-          "path": "catalog/tools/supabase.json",
+          "path": "catalog/binaries/supabase.json",
           "installType": "npm",
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
-          "id": "tool:wrangler",
+          "id": "binary:wrangler",
           "name": "Cloudflare Wrangler",
           "version": "latest",
           "description": "Deploy to Cloudflare Workers/Pages",
-          "path": "catalog/tools/wrangler.json",
+          "path": "catalog/binaries/wrangler.json",
           "installType": "npm",
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
-          "id": "tool:railway",
+          "id": "binary:railway",
           "name": "Railway CLI",
           "version": "latest",
           "description": "Deploy to Railway",
-          "path": "catalog/tools/railway.json",
+          "path": "catalog/binaries/railway.json",
           "installType": "npm",
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
-          "id": "tool:flyio",
+          "id": "binary:flyio",
           "name": "Fly.io CLI",
           "version": "latest",
           "description": "Deploy to Fly.io edge hosting",
-          "path": "catalog/tools/flyio.json",
+          "path": "catalog/binaries/flyio.json",
           "installType": "npm",
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
-          "id": "tool:docker",
+          "id": "binary:docker",
           "name": "Docker",
           "description": "Container runtime",
-          "path": "catalog/tools/docker.json",
+          "path": "catalog/binaries/docker.json",
           "managed": false
         },
         {
-          "id": "tool:psql",
+          "id": "binary:psql",
           "name": "PostgreSQL Client",
           "version": "16",
           "description": "PostgreSQL client for database connections",
-          "path": "catalog/tools/psql.json",
+          "path": "catalog/binaries/psql.json",
           "managed": false
         },
         {
-          "id": "tool:httpie",
+          "id": "binary:httpie",
           "name": "HTTPie",
           "version": "3.2",
           "description": "Modern HTTP client for API testing",
-          "path": "catalog/tools/httpie.json",
+          "path": "catalog/binaries/httpie.json",
           "managed": false
         },
         {
-          "id": "tool:tesseract",
+          "id": "binary:tesseract",
           "name": "Tesseract OCR",
           "version": "5.3",
           "description": "OCR text extraction from images",
-          "path": "catalog/tools/tesseract.json",
+          "path": "catalog/binaries/tesseract.json",
           "managed": false
         },
         {
-          "id": "tool:playwright",
+          "id": "binary:playwright",
           "name": "Playwright",
           "version": "1.49.0",
           "description": "Browser automation for screenshots, scraping, and testing",
-          "path": "catalog/tools/playwright.json",
+          "path": "catalog/binaries/playwright.json",
           "installType": "npm",
           "npmPackage": "playwright",
           "postInstall": "npx playwright install chromium",
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         }
       ],
       "community": []
     },
-
     "agents": {
       "official": [
         {
@@ -480,7 +845,11 @@
           "installType": "npm",
           "npmPackage": "@anthropic-ai/claude-code",
           "requiresAuth": true,
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
           "id": "agent:codex",
@@ -491,7 +860,11 @@
           "installType": "npm",
           "npmPackage": "@openai/codex",
           "requiresAuth": true,
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
           "id": "agent:gemini",
@@ -502,7 +875,11 @@
           "installType": "npm",
           "npmPackage": "@google/gemini-cli",
           "requiresAuth": true,
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
           "id": "agent:copilot",
@@ -513,7 +890,11 @@
           "installType": "npm",
           "npmPackage": "@githubnext/github-copilot-cli",
           "requiresAuth": true,
-          "platforms": ["darwin-arm64", "darwin-x64", "linux-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64"
+          ]
         },
         {
           "id": "agent:ollama",
@@ -521,32 +902,94 @@
           "version": "0.5",
           "description": "Run local LLMs (Llama, Mistral, CodeLlama, etc.)",
           "path": "catalog/agents/ollama.json",
-          "platforms": ["darwin-arm64", "darwin-x64"]
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64"
+          ]
         }
       ],
       "community": []
     }
   },
-
   "categories": {
     "stacks": [
-      { "id": "ai-generation", "name": "AI Generation", "icon": "sparkles" },
-      { "id": "ai-local", "name": "AI Local", "icon": "cpu" },
-      { "id": "productivity", "name": "Productivity", "icon": "briefcase" },
-      { "id": "communication", "name": "Communication", "icon": "message-circle" },
-      { "id": "social-media", "name": "Social Media", "icon": "share-2" },
-      { "id": "data-extraction", "name": "Data Extraction", "icon": "database" },
-      { "id": "document-processing", "name": "Document Processing", "icon": "file" },
-      { "id": "media", "name": "Media", "icon": "video" },
-      { "id": "deployment", "name": "Deployment", "icon": "rocket" },
-      { "id": "utilities", "name": "Utilities", "icon": "tool" }
+      {
+        "id": "ai-generation",
+        "name": "AI Generation",
+        "icon": "sparkles"
+      },
+      {
+        "id": "ai-local",
+        "name": "AI Local",
+        "icon": "cpu"
+      },
+      {
+        "id": "productivity",
+        "name": "Productivity",
+        "icon": "briefcase"
+      },
+      {
+        "id": "communication",
+        "name": "Communication",
+        "icon": "message-circle"
+      },
+      {
+        "id": "social-media",
+        "name": "Social Media",
+        "icon": "share-2"
+      },
+      {
+        "id": "data-extraction",
+        "name": "Data Extraction",
+        "icon": "database"
+      },
+      {
+        "id": "document-processing",
+        "name": "Document Processing",
+        "icon": "file"
+      },
+      {
+        "id": "media",
+        "name": "Media",
+        "icon": "video"
+      },
+      {
+        "id": "deployment",
+        "name": "Deployment",
+        "icon": "rocket"
+      },
+      {
+        "id": "utilities",
+        "name": "Utilities",
+        "icon": "tool"
+      }
     ],
     "prompts": [
-      { "id": "general", "name": "General", "icon": "star" },
-      { "id": "coding", "name": "Coding", "icon": "code" },
-      { "id": "writing", "name": "Writing", "icon": "edit" },
-      { "id": "creative", "name": "Creative", "icon": "palette" },
-      { "id": "utilities", "name": "Utilities", "icon": "tool" }
+      {
+        "id": "general",
+        "name": "General",
+        "icon": "star"
+      },
+      {
+        "id": "coding",
+        "name": "Coding",
+        "icon": "code"
+      },
+      {
+        "id": "writing",
+        "name": "Writing",
+        "icon": "edit"
+      },
+      {
+        "id": "creative",
+        "name": "Creative",
+        "icon": "palette"
+      },
+      {
+        "id": "utilities",
+        "name": "Utilities",
+        "icon": "tool"
+      }
     ]
   }
 }

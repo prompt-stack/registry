@@ -1,13 +1,13 @@
 # Prompt Stack Registry
 
-Official registry for stacks, tools, agents, runtimes, and prompts.
+Official registry for stacks, binaries, agents, runtimes, and prompts.
 
 ## Package Types
 
 | Type | Description | Location |
 |------|-------------|----------|
 | **Stack** | MCP servers with tools | `catalog/stacks/{id}/` |
-| **Tool** | Standalone binaries/CLIs | `catalog/tools/{id}.json` |
+| **Binary** | Standalone binaries/CLIs | `catalog/binaries/{id}.json` |
 | **Agent** | AI coding assistants | `catalog/agents/{id}.json` |
 | **Runtime** | Language interpreters | `catalog/runtimes/{id}.json` |
 | **Prompt** | System prompt templates | `catalog/prompts/{id}.md` |
@@ -20,7 +20,7 @@ pstack search whisper
 
 # Install packages
 pstack install stack:whisper
-pstack install tool:ffmpeg
+pstack install binary:ffmpeg
 pstack install prompt:code-review
 
 # List installed
@@ -41,8 +41,8 @@ catalog/
 ├── prompts/                  # Prompt templates
 │   └── {prompt-id}.md        # Markdown with YAML frontmatter
 │
-├── tools/                    # Tool manifests
-│   └── {tool-id}.json
+├── binaries/                 # Binary manifests
+│   └── {binary-id}.json
 │
 ├── agents/                   # Agent manifests
 │   └── {agent-id}.json
@@ -62,18 +62,23 @@ catalog/
   "name": "My Stack",
   "version": "1.0.0",
   "description": "What it does",
-  "runtimes": ["node"],
-  "mcp": {
-    "runtime": "node",
-    "command": "npx",
-    "args": ["tsx", "node/src/index.ts"]
+  "runtime": "node",
+  "command": ["npx", "tsx", "node/src/index.ts"],
+  "provides": {
+    "tools": ["my_tool_1", "my_tool_2"]
   },
-  "secrets": [
-    { "key": "MY_API_KEY", "label": "API Key", "required": true }
-  ],
-  "tools": ["my_tool_1", "my_tool_2"],
-  "category": "productivity",
-  "tags": ["example"]
+  "requires": {
+    "binaries": ["ffmpeg"],
+    "secrets": [
+      { "name": "MY_API_KEY", "label": "API Key", "required": true }
+    ]
+  },
+  "meta": {
+    "author": "Your Name",
+    "license": "MIT",
+    "category": "productivity",
+    "tags": ["example"]
+  }
 }
 ```
 
@@ -85,7 +90,7 @@ catalog/
 
 When users install a stack with secrets:
 
-1. `pstack install my-stack` creates `~/.prompt-stack/stacks/my-stack/.env` with placeholders
+1. `pstack install my-stack` creates `~/.rudi/stacks/my-stack/.env` with placeholders
 2. User edits `.env` to add their API keys
 3. MCP registration reads from `.env` and injects into agent configs (Claude, Codex, Gemini)
 
@@ -119,9 +124,9 @@ Your system prompt content here...
 
 3. Add entry to `index.json` under `packages.prompts.official`
 
-## Adding a Tool
+## Adding a Binary
 
-Tools use install types to determine how they're installed:
+Binaries use install types to determine how they're installed:
 
 | Install Type | Source | Examples |
 |--------------|--------|----------|
@@ -130,10 +135,10 @@ Tools use install types to determine how they're installed:
 | `pip` | PyPI | httpie |
 | `system` | User installs | docker, git |
 
-Example tool manifest (`catalog/tools/jq.json`):
+Example binary manifest (`catalog/binaries/jq.json`):
 ```json
 {
-  "id": "tool:jq",
+  "id": "binary:jq",
   "name": "jq",
   "version": "1.7.1",
   "description": "JSON processor",
@@ -151,7 +156,7 @@ Example tool manifest (`catalog/tools/jq.json`):
 
 **Stacks:** ai-generation, ai-local, productivity, communication, social-media, data-extraction, document-processing, media, deployment, utilities
 
-**Tools:** media, data, devops, utilities, ai-ml, version-control
+**Binaries:** media, data, devops, utilities, ai-ml, version-control
 
 **Prompts:** coding, writing, creative, utilities, general
 
@@ -174,12 +179,12 @@ Example tool manifest (`catalog/tools/jq.json`):
 
 ## Security
 
-**Never include API keys or secrets in the registry.** Stacks declare required secrets in `manifest.json`. When installed, a `.env` file is created at `~/.prompt-stack/stacks/<id>/.env` where users add their keys locally.
+**Never include API keys or secrets in the registry.** Stacks declare required secrets in `manifest.json` under `requires.secrets`. When installed, a `.env` file is created at `~/.rudi/stacks/<id>/.env` where users add their keys locally.
 
 ## URLs
 
-- **Index:** `https://raw.githubusercontent.com/prompt-stack/registry/main/index.json`
-- **Stacks:** `https://raw.githubusercontent.com/prompt-stack/registry/main/catalog/stacks/{id}/`
+- **Index:** `https://raw.githubusercontent.com/learn-rudi/registry/main/index.json`
+- **Stacks:** `https://raw.githubusercontent.com/learn-rudi/registry/main/catalog/stacks/{id}/`
 
 ## License
 

@@ -1,6 +1,6 @@
 # Prompts Library
 
-**Location**: `~/.prompt-stack/prompts/`
+**Location**: `~/.rudi/prompts/`
 
 This directory contains your **prompt templates** - reusable instructions for AI assistants.
 
@@ -49,7 +49,7 @@ This is where you write the detailed instructions for the AI...
 
 ### Option 2: Create Manually
 ```bash
-cd ~/.prompt-stack/prompts/
+cd ~/.rudi/prompts/
 nano my-prompt.md
 ```
 

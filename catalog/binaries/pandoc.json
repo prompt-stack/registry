@@ -1,0 +1,28 @@
+{
+  "id": "binary:pandoc",
+  "name": "Pandoc",
+  "version": "3.6.1",
+  "description": "Universal document converter",
+  "category": "utilities",
+  "installType": "binary",
+  "binary": "pandoc",
+  "upstream": {
+    "darwin-arm64": "https://github.com/jgm/pandoc/releases/download/3.6.1/pandoc-3.6.1-arm64-macOS.zip",
+    "darwin-x64": "https://github.com/jgm/pandoc/releases/download/3.6.1/pandoc-3.6.1-x86_64-macOS.zip",
+    "linux-x64": "https://github.com/jgm/pandoc/releases/download/3.6.1/pandoc-3.6.1-linux-amd64.tar.gz"
+  },
+  "extract": {
+    "darwin-arm64": {
+      "type": "zip",
+      "binary": "pandoc-*/bin/pandoc"
+    },
+    "darwin-x64": {
+      "type": "zip",
+      "binary": "pandoc-*/bin/pandoc"
+    },
+    "linux-x64": {
+      "type": "tar.gz",
+      "binary": "pandoc-*/bin/pandoc"
+    }
+  }
+}

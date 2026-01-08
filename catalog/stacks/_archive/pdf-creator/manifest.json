@@ -3,10 +3,29 @@
   "name": "PDF Creator",
   "version": "1.0.0",
   "description": "Convert HTML files to PDF documents",
-  "author": "Spacely Studio",
-  "license": "MIT",
   "runtime": "python",
-  "entrypoint": "create_pdf.py",
+  "command": [
+    "python",
+    "create_pdf.py"
+  ],
+  "provides": {
+    "tools": []
+  },
+  "requires": {
+    "binaries": [],
+    "secrets": []
+  },
+  "meta": {
+    "author": "Spacely Studio",
+    "license": "MIT",
+    "category": "document-processing",
+    "tags": [
+      "pdf",
+      "conversion",
+      "html"
+    ],
+    "icon": "📄"
+  },
   "inputs": [
     {
       "name": "input_file",
@@ -30,9 +49,9 @@
     }
   ],
   "dependencies": {
-    "python": ["pdfkit", "jinja2"]
-  },
-  "tags": ["pdf", "conversion", "html"],
-  "category": "document-processing",
-  "icon": "📄"
+    "python": [
+      "pdfkit",
+      "jinja2"
+    ]
+  }
 }

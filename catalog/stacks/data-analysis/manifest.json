@@ -1,0 +1,35 @@
+{
+  "id": "data-analysis",
+  "name": "Data Analysis",
+  "version": "1.0.0",
+  "description": "Analyze data with Python, pandas, numpy, and matplotlib. Generate charts and insights.",
+  "runtime": "python",
+  "command": ["python", "src/server.py"],
+  "provides": {
+    "tools": [
+      "data_load_csv",
+      "data_load_excel",
+      "data_load_json",
+      "data_describe",
+      "data_query",
+      "data_transform",
+      "data_aggregate",
+      "data_chart_bar",
+      "data_chart_line",
+      "data_chart_scatter",
+      "data_chart_pie",
+      "data_export"
+    ]
+  },
+  "requires": {
+    "binaries": [],
+    "secrets": []
+  },
+  "meta": {
+    "author": "RUDI",
+    "license": "MIT",
+    "category": "data",
+    "tags": ["data", "analysis", "python", "pandas", "charts", "visualization"],
+    "icon": "📈"
+  }
+}

@@ -5,12 +5,17 @@
   "description": "Send messages, search channels, upload files, and manage reactions in Slack",
   "author": "CO-LLAB",
   "license": "MIT",
-  "runtimes": ["node"],
+  "runtimes": [
+    "node"
+  ],
   "mcp": {
     "runtime": "node",
     "entry": "node/src/index.ts",
     "command": "npx",
-    "args": ["tsx", "node/src/index.ts"]
+    "args": [
+      "tsx",
+      "node/src/index.ts"
+    ]
   },
   "secrets": [
     {
@@ -47,7 +52,9 @@
             "description": "Thread timestamp to reply to (optional)"
           }
         },
-        "required": ["text"]
+        "required": [
+          "text"
+        ]
       }
     },
     {
@@ -78,7 +85,9 @@
             "description": "Number of messages (default: 20)"
           }
         },
-        "required": ["channel"]
+        "required": [
+          "channel"
+        ]
       }
     },
     {
@@ -96,7 +105,9 @@
             "description": "Max results (default: 20)"
           }
         },
-        "required": ["query"]
+        "required": [
+          "query"
+        ]
       }
     },
     {
@@ -118,7 +129,11 @@
             "description": "New message text"
           }
         },
-        "required": ["channel", "ts", "text"]
+        "required": [
+          "channel",
+          "ts",
+          "text"
+        ]
       }
     },
     {
@@ -140,7 +155,11 @@
             "description": "Emoji name without colons (e.g., 'thumbsup')"
           }
         },
-        "required": ["channel", "ts", "emoji"]
+        "required": [
+          "channel",
+          "ts",
+          "emoji"
+        ]
       }
     },
     {
@@ -166,7 +185,10 @@
             "description": "Initial comment (optional)"
           }
         },
-        "required": ["channel", "file_path"]
+        "required": [
+          "channel",
+          "file_path"
+        ]
       }
     },
     {
@@ -187,7 +209,18 @@
       }
     }
   ],
-  "tags": ["slack", "messaging", "chat", "team", "communication"],
+  "tags": [
+    "slack",
+    "messaging",
+    "chat",
+    "team",
+    "communication"
+  ],
   "category": "communication",
-  "icon": "💬"
+  "icon": "💬",
+  "runtime": "node",
+  "command": [
+    "node",
+    "dist/index.js"
+  ]
 }

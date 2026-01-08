@@ -3,57 +3,76 @@
   "name": "Social Media",
   "version": "1.0.0",
   "description": "Post to Twitter, LinkedIn, Facebook, and Instagram from one unified interface",
-  "author": "CO-LLAB",
-  "license": "MIT",
-  "runtimes": ["node"],
-  "mcp": {
-    "runtime": "node",
-    "entry": "node/src/index.ts",
-    "command": "npx",
-    "args": ["tsx", "node/src/index.ts"]
+  "runtime": "node",
+  "command": [
+    "npx",
+    "tsx",
+    "src/index.ts"
+  ],
+  "provides": {
+    "tools": [
+      "twitter_post",
+      "twitter_thread",
+      "linkedin_post",
+      "facebook_post",
+      "facebook_list_pages",
+      "instagram_post",
+      "instagram_list_accounts"
+    ]
   },
-  "secrets": [
-    {
-      "key": "TWITTER_API_KEY",
-      "label": "Twitter API Key",
-      "required": false
-    },
-    {
-      "key": "TWITTER_API_SECRET",
-      "label": "Twitter API Secret",
-      "required": false
-    },
-    {
-      "key": "TWITTER_ACCESS_TOKEN",
-      "label": "Twitter Access Token",
-      "required": false
-    },
-    {
-      "key": "TWITTER_ACCESS_SECRET",
-      "label": "Twitter Access Secret",
-      "required": false
-    },
-    {
-      "key": "LINKEDIN_ACCESS_TOKEN",
-      "label": "LinkedIn Access Token",
-      "required": false
-    },
-    {
-      "key": "META_ACCESS_TOKEN",
-      "label": "Meta (Facebook/Instagram) Access Token",
-      "required": false
-    }
-  ],
-  "tools": [
-    "twitter_post",
-    "twitter_thread",
-    "linkedin_post",
-    "facebook_post",
-    "facebook_list_pages",
-    "instagram_post",
-    "instagram_list_accounts"
-  ],
-  "tags": ["social-media", "twitter", "linkedin", "facebook", "instagram", "marketing"],
-  "category": "social-media",
-  "icon": "📱"
+  "requires": {
+    "binaries": [],
+    "secrets": [
+      {
+        "description": "Twitter API Key",
+        "label": "Twitter API Key",
+        "required": false,
+        "name": "TWITTER_API_KEY"
+      },
+      {
+        "description": "Twitter API Secret",
+        "label": "Twitter API Secret",
+        "required": false,
+        "name": "TWITTER_API_SECRET"
+      },
+      {
+        "description": "Twitter Access Token",
+        "label": "Twitter Access Token",
+        "required": false,
+        "name": "TWITTER_ACCESS_TOKEN"
+      },
+      {
+        "description": "Twitter Access Secret",
+        "label": "Twitter Access Secret",
+        "required": false,
+        "name": "TWITTER_ACCESS_SECRET"
+      },
+      {
+        "description": "LinkedIn Access Token",
+        "label": "LinkedIn Access Token",
+        "required": false,
+        "name": "LINKEDIN_ACCESS_TOKEN"
+      },
+      {
+        "description": "Meta (Facebook/Instagram) Access Token",
+        "label": "Meta (Facebook/Instagram) Access Token",
+        "required": false,
+        "name": "META_ACCESS_TOKEN"
+      }
+    ]
+  },
+  "meta": {
+    "author": "CO-LLAB",
+    "license": "MIT",
+    "category": "social-media",
+    "tags": [
+      "social-media",
+      "twitter",
+      "linkedin",
+      "facebook",
+      "instagram",
+      "marketing"
+    ],
+    "icon": "📱"
+  }
 }

@@ -3,10 +3,37 @@
   "name": "Neon Database",
   "version": "1.0.0",
   "description": "Create serverless Postgres databases on Neon. Returns a DATABASE_URL connection string ready to use.",
-  "author": "Prompt Stack",
-  "license": "MIT",
   "runtime": "node",
-  "entrypoint": "create-db.js",
+  "command": [
+    "node",
+    "create-db.js"
+  ],
+  "provides": {
+    "tools": []
+  },
+  "requires": {
+    "binaries": [],
+    "secrets": [
+      {
+        "description": "API key for creating serverless Postgres databases",
+        "label": "Neon API Key",
+        "link": "https://console.neon.tech/app/settings/api-keys",
+        "name": "NEON_API_KEY"
+      }
+    ]
+  },
+  "meta": {
+    "author": "Prompt Stack",
+    "license": "MIT",
+    "category": "database",
+    "tags": [
+      "database",
+      "postgres",
+      "neon",
+      "serverless"
+    ],
+    "icon": "🐘"
+  },
   "inputs": [
     {
       "name": "name",
@@ -44,17 +71,5 @@
       "type": "string",
       "description": "Database host"
     }
-  ],
-  "secrets": [
-    {
-      "key": "NEON_API_KEY",
-      "label": "Neon API Key",
-      "description": "API key for creating serverless Postgres databases",
-      "helpUrl": "https://console.neon.tech/app/settings/api-keys",
-      "required": true
-    }
-  ],
-  "tags": ["database", "postgres", "neon", "serverless"],
-  "category": "database",
-  "icon": "🐘"
+  ]
 }

@@ -1,0 +1,13 @@
+{
+  "id": "binary:docker",
+  "name": "Docker",
+  "description": "Container runtime",
+  "category": "devops",
+  "installType": "system",
+  "binary": "docker",
+  "checkCommand": "docker --version",
+  "installInstructions": {
+    "darwin": "Download Docker Desktop from https://docker.com/products/docker-desktop",
+    "linux": "curl -fsSL https://get.docker.com | sh"
+  }
+}

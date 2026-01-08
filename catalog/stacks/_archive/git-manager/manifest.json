@@ -3,10 +3,37 @@
   "name": "Git Manager",
   "version": "1.0.0",
   "description": "Initialize repos, commit changes, and push to GitHub. Supports creating new GitHub repos automatically.",
-  "author": "Prompt Stack",
-  "license": "MIT",
   "runtime": "node",
-  "entrypoint": "git-manager.js",
+  "command": [
+    "node",
+    "git-manager.js"
+  ],
+  "provides": {
+    "tools": []
+  },
+  "requires": {
+    "binaries": [],
+    "secrets": [
+      {
+        "description": "Token with repo scope for creating repos and pushing code",
+        "label": "GitHub Personal Access Token",
+        "link": "https://github.com/settings/tokens",
+        "name": "GITHUB_TOKEN"
+      }
+    ]
+  },
+  "meta": {
+    "author": "Prompt Stack",
+    "license": "MIT",
+    "category": "source-control",
+    "tags": [
+      "git",
+      "github",
+      "version-control",
+      "repo"
+    ],
+    "icon": "🐙"
+  },
   "inputs": [
     {
       "name": "action",
@@ -51,17 +78,5 @@
       "type": "string",
       "description": "Commit SHA (for commit action)"
     }
-  ],
-  "secrets": [
-    {
-      "key": "GITHUB_TOKEN",
-      "label": "GitHub Personal Access Token",
-      "description": "Token with repo scope for creating repos and pushing code",
-      "helpUrl": "https://github.com/settings/tokens",
-      "required": true
-    }
-  ],
-  "tags": ["git", "github", "version-control", "repo"],
-  "category": "source-control",
-  "icon": "🐙"
+  ]
 }

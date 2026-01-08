@@ -4,7 +4,29 @@
   "version": "2.0.0",
   "description": "Extract transcripts from YouTube videos using intelligent fallback methods (API → HTML → yt-dlp). Supports multiple languages and formats.",
   "runtime": "node",
-  "entrypoint": "youtube-transcript-api.js",
+  "command": [
+    "node",
+    "youtube-transcript-api.js"
+  ],
+  "provides": {
+    "tools": []
+  },
+  "requires": {
+    "binaries": [],
+    "secrets": []
+  },
+  "meta": {
+    "author": "Brandon Hoff",
+    "category": "content-extraction",
+    "tags": [
+      "youtube",
+      "transcript",
+      "video",
+      "captions",
+      "subtitles",
+      "extraction"
+    ]
+  },
   "inputs": [
     {
       "id": "url",
@@ -34,27 +56,6 @@
       "name": "Video Transcript",
       "description": "Extracted transcript text with timestamps",
       "type": "string"
-    }
-  ],
-  "tags": ["youtube", "transcript", "video", "captions", "subtitles", "extraction"],
-  "category": "content-extraction",
-  "author": "Brandon Hoff",
-  "examples": [
-    {
-      "name": "Extract transcript to file",
-      "description": "Extract transcript and save to markdown file",
-      "inputs": {
-        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-        "output": "transcript.md"
-      }
-    },
-    {
-      "name": "Extract Spanish transcript",
-      "description": "Extract transcript in Spanish language",
-      "inputs": {
-        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-        "lang": "es"
-      }
     }
   ]
 }

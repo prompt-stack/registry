@@ -1,6 +1,6 @@
-# Prompt Stack Registry
+# RUDI Registry
 
-Source of truth for stacks, runtimes, tools, and agents.
+Source of truth for stacks, runtimes, binaries, and agents.
 
 ## Structure
 
@@ -13,7 +13,7 @@ catalog/
 │   │   └── node/src/         # MCP server code
 │   └── ...
 ├── runtimes/*.json           # Runtime definitions (node, python, deno)
-├── tools/*.json              # Tool definitions (ffmpeg, ripgrep)
+├── binaries/*.json           # Binary definitions (ffmpeg, ripgrep)
 └── agents/*.json             # Agent definitions (claude, codex, gemini)
 
 GitHub Releases (v1.0.0):     # Binary downloads
@@ -23,7 +23,7 @@ GitHub Releases (v1.0.0):     # Binary downloads
 └── ...
 ```
 
-## Current Stacks (11)
+## Current Stacks (14)
 
 | Stack | Description | Secrets |
 |-------|-------------|---------|
@@ -33,16 +33,19 @@ GitHub Releases (v1.0.0):     # Binary downloads
 | ms-office | Word, Excel document reading | - |
 | notion-workspace | Pages, databases, search | NOTION_API_KEY |
 | openai | DALL-E, Whisper, TTS, Sora | OPENAI_API_KEY |
+| postgres | PostgreSQL database queries | DATABASE_URL |
 | slack | Messages, channels, files | SLACK_BOT_TOKEN |
 | social-media | Twitter, LinkedIn, Facebook, Instagram | (optional) |
+| sqlite | SQLite database queries (RUDI db) | SQLITE_DB_PATH |
 | video-editor | ffmpeg-based editing | - |
 | web-export | HTML to PNG/PDF | - |
+| whisper | Local audio transcription | - |
 | zoho-mail | Email via Zoho | ZOHO_CLIENT_ID, ZOHO_CLIENT_SECRET |
 
 ## URLs
 
-- Index: `https://raw.githubusercontent.com/prompt-stack/registry/main/index.json`
-- Binaries: `https://github.com/prompt-stack/registry/releases/download/v1.0.0/{name}.tar.gz`
+- Index: `https://raw.githubusercontent.com/learn-rudi/registry/main/index.json`
+- Binaries: `https://github.com/learn-rudi/registry/releases/download/v1.0.0/{name}.tar.gz`
 
 ## Adding a Stack
 
@@ -59,14 +62,22 @@ GitHub Releases (v1.0.0):     # Binary downloads
   "name": "Slack",
   "version": "1.0.0",
   "description": "Send messages, search channels...",
-  "mcp": {
-    "runtime": "node",
-    "command": "npx",
-    "args": ["tsx", "node/src/index.ts"]
+  "runtime": "node",
+  "command": ["npx", "tsx", "node/src/index.ts"],
+  "provides": {
+    "tools": ["slack_send_message", "slack_list_channels"]
   },
-  "secrets": [
-    { "key": "SLACK_BOT_TOKEN", "required": true }
-  ],
-  "tools": ["slack_send_message", "slack_list_channels", ...]
+  "requires": {
+    "binaries": ["ffmpeg"],
+    "secrets": [
+      { "name": "SLACK_BOT_TOKEN", "required": true }
+    ]
+  },
+  "meta": {
+    "author": "RUDI",
+    "license": "MIT",
+    "category": "communication",
+    "tags": ["slack"]
+  }
 }
 ```

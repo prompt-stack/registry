@@ -3,26 +3,43 @@
   "name": "YouTube Extractor",
   "version": "2.0.0",
   "description": "Extract transcripts from YouTube videos with multiple fallback methods",
-  "author": "CO-LLAB",
-  "license": "MIT",
-  "runtimes": ["python", "node"],
-  "mcp": {
-    "runtime": "node",
-    "entry": "node/src/index.ts",
-    "command": "npx",
-    "args": ["tsx", "node/src/index.ts"]
-  },
-  "secrets": [
-    {
-      "key": "SUPA_DATA_API",
-      "label": "Supadata API Key",
-      "description": "Optional - Supadata API for faster transcript extraction",
-      "helpUrl": "https://supadata.ai",
-      "required": false
-    }
+  "runtime": "node",
+  "command": [
+    "npx",
+    "tsx",
+    "node/src/index.ts"
   ],
-  "tools": ["extract_youtube"],
-  "tags": ["youtube", "video", "transcript", "extraction"],
-  "category": "data-extraction",
-  "icon": "📺"
+  "provides": {
+    "tools": [
+      "extract_youtube"
+    ]
+  },
+  "requires": {
+    "binaries": [],
+    "secrets": [
+      {
+        "description": "Optional - Supadata API for faster transcript extraction",
+        "label": "Supadata API Key",
+        "link": "https://supadata.ai",
+        "required": false,
+        "name": "SUPA_DATA_API"
+      }
+    ]
+  },
+  "meta": {
+    "author": "CO-LLAB",
+    "license": "MIT",
+    "category": "data-extraction",
+    "tags": [
+      "youtube",
+      "video",
+      "transcript",
+      "extraction"
+    ],
+    "icon": "📺"
+  },
+  "runtimes": [
+    "python",
+    "node"
+  ]
 }
