@@ -584,6 +584,20 @@
             "darwin-arm64",
             "darwin-x64"
           ]
+        },
+        {
+          "id": "runtime:ollama",
+          "name": "Ollama",
+          "version": "0.5.4",
+          "description": "Run local LLMs and embedding models (Llama, Mistral, nomic-embed-text)",
+          "path": "catalog/runtimes/ollama.json",
+          "category": "model",
+          "platforms": [
+            "darwin-arm64",
+            "darwin-x64",
+            "linux-x64",
+            "linux-arm64"
+          ]
         }
       ],
       "community": []
@@ -930,19 +944,6 @@
             "darwin-arm64",
             "darwin-x64",
             "linux-x64"
-          ]
-        },
-        {
-          "id": "agent:ollama",
-          "name": "Ollama",
-          "version": "0.5.4",
-          "description": "Run local LLMs and embedding models (Llama, Mistral, nomic-embed-text)",
-          "path": "catalog/agents/ollama.json",
-          "platforms": [
-            "darwin-arm64",
-            "darwin-x64",
-            "linux-x64",
-            "linux-arm64"
           ]
         }
       ],

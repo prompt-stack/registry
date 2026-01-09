@@ -1,0 +1,42 @@
+{
+  "id": "ollama",
+  "name": "Ollama",
+  "version": "0.5.4",
+  "description": "Run local LLMs and embedding models (Llama, Mistral, nomic-embed-text)",
+  "category": "model",
+  "bundled": false,
+  "binary": "ollama",
+  "installDir": "ollama",
+  "commands": [
+    { "name": "ollama", "bin": "ollama" }
+  ],
+  "download": {
+    "darwin-arm64": {
+      "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-darwin",
+      "type": "binary"
+    },
+    "darwin-x64": {
+      "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-darwin",
+      "type": "binary"
+    },
+    "linux-x64": {
+      "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-linux-amd64",
+      "type": "binary"
+    },
+    "linux-arm64": {
+      "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-linux-arm64",
+      "type": "binary"
+    }
+  },
+  "postInstall": {
+    "message": "Ollama installed. To start:\n  ollama serve\n\nFor embeddings:\n  ollama pull nomic-embed-text\n\nFor chat:\n  ollama pull llama3.2"
+  },
+  "meta": {
+    "homepage": "https://ollama.ai",
+    "docs": "https://github.com/ollama/ollama",
+    "models": {
+      "embedding": ["nomic-embed-text", "mxbai-embed-large", "all-minilm"],
+      "chat": ["llama3.2", "mistral", "codellama", "qwen2.5-coder"]
+    }
+  }
+}
