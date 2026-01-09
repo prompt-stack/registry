@@ -1,0 +1,10 @@
+{
+  "id": "binary:test",
+  "kind": "binary",
+  "name": "Test",
+  "version": "1.0.0",
+  "delivery": "remote",
+  "install": {
+    "source": "magic"
+  }
+}

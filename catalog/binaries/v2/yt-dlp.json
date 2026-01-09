@@ -1,0 +1,40 @@
+{
+  "id": "binary:yt-dlp",
+  "kind": "binary",
+  "name": "yt-dlp",
+  "version": "2024.12.23",
+
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://github.com/yt-dlp/yt-dlp/releases/download/2024.12.23/yt-dlp_macos",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "raw" }
+      },
+      "darwin-x64": {
+        "url": "https://github.com/yt-dlp/yt-dlp/releases/download/2024.12.23/yt-dlp_macos",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "raw" }
+      },
+      "linux-x64": {
+        "url": "https://github.com/yt-dlp/yt-dlp/releases/download/2024.12.23/yt-dlp_linux",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "raw" }
+      }
+    }
+  },
+
+  "bins": ["yt-dlp"],
+
+  "detect": {
+    "command": "yt-dlp --version",
+    "expectExitCode": 0
+  },
+
+  "meta": {
+    "description": "Video downloader for YouTube and other sites",
+    "category": "media"
+  }
+}

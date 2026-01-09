@@ -1,0 +1,50 @@
+{
+  "id": "binary:ffmpeg",
+  "kind": "binary",
+  "name": "FFmpeg",
+  "version": "7.1",
+
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://evermeet.cx/ffmpeg/ffmpeg-7.1.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      },
+      "darwin-x64": {
+        "url": "https://evermeet.cx/ffmpeg/ffmpeg-7.1.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      },
+      "linux-x64": {
+        "url": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "tar.xz", "strip": 1 }
+      },
+      "win32-x64": {
+        "url": "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip", "strip": 1 }
+      }
+    }
+  },
+
+  "bins": {
+    "ffmpeg": { "path": "ffmpeg" },
+    "ffprobe": { "path": "ffprobe" }
+  },
+
+  "detect": {
+    "command": "ffmpeg -version",
+    "expectExitCode": 0
+  },
+
+  "meta": {
+    "description": "Audio/video processing toolkit",
+    "category": "media",
+    "tags": ["video", "audio", "encoding", "transcoding"],
+    "icon": "🎬"
+  }
+}

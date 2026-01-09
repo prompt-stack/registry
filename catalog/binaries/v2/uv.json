@@ -1,0 +1,45 @@
+{
+  "id": "binary:uv",
+  "kind": "binary",
+  "name": "uv",
+  "version": "0.9.22",
+
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://github.com/astral-sh/uv/releases/download/0.9.22/uv-aarch64-apple-darwin.tar.gz",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "tar.gz" }
+      },
+      "darwin-x64": {
+        "url": "https://github.com/astral-sh/uv/releases/download/0.9.22/uv-x86_64-apple-darwin.tar.gz",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "tar.gz" }
+      },
+      "linux-x64": {
+        "url": "https://github.com/astral-sh/uv/releases/download/0.9.22/uv-x86_64-unknown-linux-gnu.tar.gz",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "tar.gz" }
+      },
+      "linux-arm64": {
+        "url": "https://github.com/astral-sh/uv/releases/download/0.9.22/uv-aarch64-unknown-linux-gnu.tar.gz",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "tar.gz" }
+      }
+    }
+  },
+
+  "bins": ["uv", "uvx"],
+
+  "detect": {
+    "command": "uv --version",
+    "expectExitCode": 0
+  },
+
+  "meta": {
+    "description": "Extremely fast Python package and project manager",
+    "category": "utilities"
+  }
+}

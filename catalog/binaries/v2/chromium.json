@@ -1,0 +1,42 @@
+{
+  "id": "binary:chromium",
+  "kind": "binary",
+  "name": "Chromium",
+  "version": "131",
+
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://github.com/AkiKurisu/puppeteer-browser-builds/releases/download/chrome-for-testing-131.0.6778.204/chromium-131.0.6778.204-mac-arm64.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      },
+      "darwin-x64": {
+        "url": "https://github.com/AkiKurisu/puppeteer-browser-builds/releases/download/chrome-for-testing-131.0.6778.204/chromium-131.0.6778.204-mac-x64.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      },
+      "linux-x64": {
+        "url": "https://github.com/AkiKurisu/puppeteer-browser-builds/releases/download/chrome-for-testing-131.0.6778.204/chromium-131.0.6778.204-linux-x64.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      }
+    }
+  },
+
+  "bins": {
+    "chromium": { "path": "Chromium.app/Contents/MacOS/Chromium" }
+  },
+
+  "detect": {
+    "command": "chromium --version",
+    "expectExitCode": 0
+  },
+
+  "meta": {
+    "description": "Browser automation for Puppeteer/Playwright",
+    "category": "utilities"
+  }
+}

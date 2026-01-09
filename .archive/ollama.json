@@ -1,0 +1,55 @@
+{
+  "id": "binary:ollama",
+  "name": "Ollama",
+  "version": "0.5.4",
+  "description": "Run LLMs and embedding models locally",
+  "category": "ai",
+  "installType": "binary",
+  "bins": ["ollama"],
+  "downloads": {
+    "darwin-arm64": [
+      {
+        "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-darwin",
+        "type": "binary",
+        "binary": "ollama"
+      }
+    ],
+    "darwin-x64": [
+      {
+        "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-darwin",
+        "type": "binary",
+        "binary": "ollama"
+      }
+    ],
+    "linux-x64": [
+      {
+        "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-linux-amd64",
+        "type": "binary",
+        "binary": "ollama"
+      }
+    ],
+    "linux-arm64": [
+      {
+        "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-linux-arm64",
+        "type": "binary",
+        "binary": "ollama"
+      }
+    ]
+  },
+  "postInstall": {
+    "commands": [
+      "ollama serve &",
+      "sleep 2",
+      "ollama pull nomic-embed-text"
+    ],
+    "message": "Ollama installed. Run 'ollama serve' to start the server."
+  },
+  "meta": {
+    "homepage": "https://ollama.ai",
+    "docs": "https://github.com/ollama/ollama",
+    "models": {
+      "embedding": ["nomic-embed-text", "mxbai-embed-large", "all-minilm"],
+      "chat": ["llama3.2", "mistral", "codellama"]
+    }
+  }
+}

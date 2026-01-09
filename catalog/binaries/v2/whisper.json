@@ -1,0 +1,37 @@
+{
+  "id": "binary:whisper",
+  "kind": "binary",
+  "name": "Whisper",
+  "version": "1.0.0",
+
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://github.com/learn-rudi/registry/releases/download/v1.0.0/whisper-darwin-arm64.tar.gz",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "tar.gz" }
+      },
+      "darwin-x64": {
+        "url": "https://github.com/learn-rudi/registry/releases/download/v1.0.0/whisper-darwin-x64.tar.gz",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "tar.gz" }
+      }
+    }
+  },
+
+  "bins": {
+    "whisper-cli": { "path": "bin/whisper-cli" }
+  },
+
+  "detect": {
+    "command": "whisper-cli --version",
+    "expectExitCode": 0
+  },
+
+  "meta": {
+    "description": "OpenAI Whisper speech-to-text (local whisper.cpp)",
+    "category": "media"
+  }
+}

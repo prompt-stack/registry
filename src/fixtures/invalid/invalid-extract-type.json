@@ -1,0 +1,22 @@
+{
+  "id": "binary:test",
+  "kind": "binary",
+  "name": "Test",
+  "version": "1.0.0",
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://example.com/test.rar",
+        "checksum": {
+          "algo": "sha256",
+          "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "extract": {
+          "type": "rar"
+        }
+      }
+    }
+  }
+}

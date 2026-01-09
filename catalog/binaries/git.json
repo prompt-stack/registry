@@ -7,6 +7,30 @@
   "installType": "system",
   "binary": "git",
   "checkCommand": "git --version",
+
+  "platforms": {
+    "darwin": {
+      "strategy": "system",
+      "preinstalled": true,
+      "bins": ["git"],
+      "agentGuidance": "Git is pre-installed on macOS (via Xcode CLT). No installation needed. Use system binary."
+    },
+    "linux": {
+      "strategy": "package-manager",
+      "preinstalled": true,
+      "bins": ["git"],
+      "packageManager": "apt",
+      "package": "git",
+      "agentGuidance": "Git is pre-installed on most Linux distributions. Use system binary."
+    },
+    "win32": {
+      "strategy": "bundled",
+      "preinstalled": false,
+      "bins": ["git.exe"],
+      "agentGuidance": "Git is not pre-installed on Windows. Would need to bundle Git binary or direct user to Git for Windows installer."
+    }
+  },
+
   "installInstructions": {
     "darwin": "Install Xcode Command Line Tools: xcode-select --install",
     "linux": "sudo apt install git"

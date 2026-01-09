@@ -1,0 +1,42 @@
+{
+  "id": "runtime:deno",
+  "kind": "runtime",
+  "name": "Deno",
+  "version": "1.40",
+
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://github.com/denoland/deno/releases/download/v1.40.0/deno-aarch64-apple-darwin.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      },
+      "darwin-x64": {
+        "url": "https://github.com/denoland/deno/releases/download/v1.40.0/deno-x86_64-apple-darwin.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      },
+      "linux-x64": {
+        "url": "https://github.com/denoland/deno/releases/download/v1.40.0/deno-x86_64-unknown-linux-gnu.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      }
+    }
+  },
+
+  "bins": {
+    "deno": { "path": "deno" }
+  },
+
+  "detect": {
+    "command": "deno --version",
+    "expectExitCode": 0
+  },
+
+  "meta": {
+    "description": "Secure JavaScript/TypeScript runtime",
+    "category": "runtime"
+  }
+}

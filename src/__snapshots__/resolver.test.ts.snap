@@ -1,0 +1,91 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`platform resolution snapshots > binary resolution across platforms > should resolve correctly for darwin-arm64 1`] = `
+{
+  "hasUrl": true,
+  "platformKey": "darwin-arm64",
+  "source": "download",
+  "url": "https://example.com/test-darwin-arm64.zip",
+}
+`;
+
+exports[`platform resolution snapshots > binary resolution across platforms > should resolve correctly for darwin-x64 1`] = `
+{
+  "hasUrl": true,
+  "platformKey": "darwin-x64",
+  "source": "download",
+  "url": "https://example.com/test-darwin-x64.zip",
+}
+`;
+
+exports[`platform resolution snapshots > binary resolution across platforms > should resolve correctly for linux-arm64 1`] = `
+{
+  "hasUrl": false,
+  "platformKey": undefined,
+  "source": "download",
+  "url": undefined,
+}
+`;
+
+exports[`platform resolution snapshots > binary resolution across platforms > should resolve correctly for linux-x64 1`] = `
+{
+  "hasUrl": true,
+  "platformKey": "linux-x64",
+  "source": "download",
+  "url": "https://example.com/test-linux-x64.tar.gz",
+}
+`;
+
+exports[`platform resolution snapshots > binary resolution across platforms > should resolve correctly for win32-x64 1`] = `
+{
+  "hasUrl": false,
+  "platformKey": undefined,
+  "source": "download",
+  "url": undefined,
+}
+`;
+
+exports[`platform resolution snapshots > sqlite resolution across platforms > should resolve correctly for darwin-arm64 1`] = `
+{
+  "delivery": "system",
+  "hasUrl": false,
+  "platformKey": "darwin",
+  "source": "system",
+}
+`;
+
+exports[`platform resolution snapshots > sqlite resolution across platforms > should resolve correctly for darwin-x64 1`] = `
+{
+  "delivery": "system",
+  "hasUrl": false,
+  "platformKey": "darwin",
+  "source": "system",
+}
+`;
+
+exports[`platform resolution snapshots > sqlite resolution across platforms > should resolve correctly for linux-arm64 1`] = `
+{
+  "delivery": "system",
+  "hasUrl": false,
+  "platformKey": "linux",
+  "source": "system",
+}
+`;
+
+exports[`platform resolution snapshots > sqlite resolution across platforms > should resolve correctly for linux-x64 1`] = `
+{
+  "delivery": "system",
+  "hasUrl": false,
+  "platformKey": "linux",
+  "source": "system",
+}
+`;
+
+exports[`platform resolution snapshots > sqlite resolution across platforms > should resolve correctly for win32-x64 1`] = `
+{
+  "delivery": "remote",
+  "hasUrl": true,
+  "platformKey": "win32-x64",
+  "source": "download",
+}
+`;

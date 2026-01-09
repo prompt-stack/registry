@@ -1,0 +1,54 @@
+{
+  "id": "stack:github",
+  "kind": "stack",
+  "name": "GitHub",
+  "version": "1.0.0",
+
+  "delivery": "remote",
+  "install": {
+    "source": "catalog",
+    "path": "catalog/stacks/github"
+  },
+
+  "runtime": "node",
+  "requires": {
+    "binaries": [],
+    "secrets": [
+      {
+        "key": "GITHUB_TOKEN",
+        "label": "GitHub Personal Access Token",
+        "required": true,
+        "helpUrl": "https://github.com/settings/tokens"
+      }
+    ]
+  },
+  "provides": {
+    "tools": [
+      "github_list_repos",
+      "github_get_repo",
+      "github_search_code",
+      "github_list_prs",
+      "github_get_pr",
+      "github_create_pr",
+      "github_list_issues",
+      "github_get_issue",
+      "github_create_issue",
+      "github_add_comment"
+    ]
+  },
+  "mcp": {
+    "transport": "stdio",
+    "command": "node",
+    "args": ["dist/index.js"],
+    "cwd": "."
+  },
+
+  "meta": {
+    "description": "Manage GitHub repos, PRs, issues, and code search",
+    "author": "RUDI",
+    "license": "MIT",
+    "category": "development",
+    "tags": ["github", "git", "repos", "prs", "issues"],
+    "icon": "🐙"
+  }
+}

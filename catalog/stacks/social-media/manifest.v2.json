@@ -1,0 +1,43 @@
+{
+  "id": "stack:social-media",
+  "kind": "stack",
+  "name": "Social Media",
+  "version": "1.0.0",
+
+  "delivery": "remote",
+  "install": {
+    "source": "catalog",
+    "path": "catalog/stacks/social-media"
+  },
+
+  "runtime": "node",
+  "requires": {
+    "binaries": [],
+    "secrets": [
+      { "key": "TWITTER_API_KEY", "label": "Twitter API Key", "required": false },
+      { "key": "TWITTER_API_SECRET", "label": "Twitter API Secret", "required": false },
+      { "key": "TWITTER_ACCESS_TOKEN", "label": "Twitter Access Token", "required": false },
+      { "key": "TWITTER_ACCESS_SECRET", "label": "Twitter Access Secret", "required": false },
+      { "key": "LINKEDIN_ACCESS_TOKEN", "label": "LinkedIn Access Token", "required": false },
+      { "key": "META_ACCESS_TOKEN", "label": "Meta Access Token", "required": false, "helpUrl": "https://developers.facebook.com/tools/explorer/" }
+    ]
+  },
+  "provides": {
+    "tools": ["twitter_post", "twitter_thread", "linkedin_post", "facebook_post", "facebook_list_pages", "instagram_post", "instagram_list_accounts"]
+  },
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["tsx", "src/index.ts"],
+    "cwd": "."
+  },
+
+  "meta": {
+    "description": "Post to Twitter, LinkedIn, Facebook, and Instagram from one unified interface",
+    "author": "CO-LLAB",
+    "license": "MIT",
+    "category": "social",
+    "tags": ["twitter", "linkedin", "facebook", "instagram", "social-media"],
+    "icon": "📱"
+  }
+}

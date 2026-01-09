@@ -1,0 +1,43 @@
+{
+  "id": "runtime:bun",
+  "kind": "runtime",
+  "name": "Bun",
+  "version": "1.0",
+
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://github.com/oven-sh/bun/releases/download/bun-v1.0.0/bun-darwin-aarch64.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      },
+      "darwin-x64": {
+        "url": "https://github.com/oven-sh/bun/releases/download/bun-v1.0.0/bun-darwin-x64.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      },
+      "linux-x64": {
+        "url": "https://github.com/oven-sh/bun/releases/download/bun-v1.0.0/bun-linux-x64.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip" }
+      }
+    }
+  },
+
+  "bins": {
+    "bun": { "path": "bun" },
+    "bunx": { "path": "bun" }
+  },
+
+  "detect": {
+    "command": "bun --version",
+    "expectExitCode": 0
+  },
+
+  "meta": {
+    "description": "Fast JavaScript runtime and package manager",
+    "category": "runtime"
+  }
+}

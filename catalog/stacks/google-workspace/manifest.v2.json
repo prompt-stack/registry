@@ -1,0 +1,55 @@
+{
+  "id": "stack:google-workspace",
+  "kind": "stack",
+  "name": "Google Workspace Tools",
+  "version": "1.0.0",
+
+  "delivery": "remote",
+  "install": {
+    "source": "catalog",
+    "path": "catalog/stacks/google-workspace"
+  },
+
+  "runtime": "node",
+  "requires": {
+    "binaries": [],
+    "secrets": [
+      {
+        "key": "GOOGLE_CREDENTIALS",
+        "label": "Google OAuth Credentials",
+        "required": true,
+        "helpUrl": "https://console.cloud.google.com/apis/credentials"
+      }
+    ]
+  },
+  "provides": {
+    "tools": [
+      "gmail_send",
+      "gmail_search",
+      "gmail_read",
+      "sheets_read",
+      "sheets_write",
+      "docs_read",
+      "docs_write",
+      "drive_list",
+      "drive_upload",
+      "calendar_list",
+      "calendar_create"
+    ]
+  },
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["tsx", "src/index.ts"],
+    "cwd": "."
+  },
+
+  "meta": {
+    "description": "Workflow-focused tools for Gmail, Google Sheets, Docs, Slides, Drive, and Calendar",
+    "author": "CO-LLAB",
+    "license": "MIT",
+    "category": "api-integrations",
+    "tags": ["google", "gmail", "sheets", "docs", "drive", "calendar"],
+    "icon": "📧"
+  }
+}

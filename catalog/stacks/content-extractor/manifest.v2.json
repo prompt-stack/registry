@@ -1,0 +1,43 @@
+{
+  "id": "stack:content-extractor",
+  "kind": "stack",
+  "name": "Content Extractor",
+  "version": "1.0.0",
+
+  "delivery": "remote",
+  "install": {
+    "source": "catalog",
+    "path": "catalog/stacks/content-extractor"
+  },
+
+  "runtime": "node",
+  "requires": {
+    "binaries": [],
+    "secrets": [
+      {
+        "key": "SUPA_DATA_API",
+        "label": "Supadata API Key",
+        "required": false,
+        "helpUrl": "https://supadata.ai"
+      }
+    ]
+  },
+  "provides": {
+    "tools": ["extract_youtube", "extract_reddit", "extract_tiktok", "extract_article"]
+  },
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["tsx", "src/index.ts"],
+    "cwd": "."
+  },
+
+  "meta": {
+    "description": "Extract content from YouTube, Reddit, TikTok, and web articles",
+    "author": "CO-LLAB",
+    "license": "MIT",
+    "category": "data-extraction",
+    "tags": ["youtube", "reddit", "tiktok", "article", "transcript"],
+    "icon": "📥"
+  }
+}

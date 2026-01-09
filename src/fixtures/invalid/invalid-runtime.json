@@ -1,0 +1,17 @@
+{
+  "id": "stack:test",
+  "kind": "stack",
+  "name": "Test Stack",
+  "version": "1.0.0",
+  "delivery": "remote",
+  "install": {
+    "source": "catalog",
+    "path": "catalog/stacks/test"
+  },
+  "runtime": "ruby",
+  "mcp": {
+    "transport": "stdio",
+    "command": "ruby",
+    "args": ["index.rb"]
+  }
+}

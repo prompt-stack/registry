@@ -1,0 +1,40 @@
+{
+  "id": "binary:yq",
+  "kind": "binary",
+  "name": "yq",
+  "version": "4.44.6",
+
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://github.com/mikefarah/yq/releases/download/v4.44.6/yq_darwin_arm64",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "raw" }
+      },
+      "darwin-x64": {
+        "url": "https://github.com/mikefarah/yq/releases/download/v4.44.6/yq_darwin_amd64",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "raw" }
+      },
+      "linux-x64": {
+        "url": "https://github.com/mikefarah/yq/releases/download/v4.44.6/yq_linux_amd64",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "raw" }
+      }
+    }
+  },
+
+  "bins": ["yq"],
+
+  "detect": {
+    "command": "yq --version",
+    "expectExitCode": 0
+  },
+
+  "meta": {
+    "description": "YAML processor (like jq but for YAML)",
+    "category": "data"
+  }
+}

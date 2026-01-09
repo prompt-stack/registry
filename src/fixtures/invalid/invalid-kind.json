@@ -1,0 +1,10 @@
+{
+  "id": "widget:test",
+  "kind": "widget",
+  "name": "Test",
+  "version": "1.0.0",
+  "delivery": "remote",
+  "install": {
+    "source": "download"
+  }
+}

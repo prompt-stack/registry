@@ -935,12 +935,14 @@
         {
           "id": "agent:ollama",
           "name": "Ollama",
-          "version": "0.5",
-          "description": "Run local LLMs (Llama, Mistral, CodeLlama, etc.)",
+          "version": "0.5.4",
+          "description": "Run local LLMs and embedding models (Llama, Mistral, nomic-embed-text)",
           "path": "catalog/agents/ollama.json",
           "platforms": [
             "darwin-arm64",
-            "darwin-x64"
+            "darwin-x64",
+            "linux-x64",
+            "linux-arm64"
           ]
         }
       ],

@@ -1,0 +1,36 @@
+{
+  "id": "stack:web-export",
+  "kind": "stack",
+  "name": "Web Export",
+  "version": "1.0.0",
+
+  "delivery": "remote",
+  "install": {
+    "source": "catalog",
+    "path": "catalog/stacks/web-export"
+  },
+
+  "runtime": "node",
+  "requires": {
+    "binaries": [],
+    "secrets": []
+  },
+  "provides": {
+    "tools": ["url_to_png", "html_to_png", "html_to_pdf", "html_to_png_pdf"]
+  },
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["tsx", "src/index.ts"],
+    "cwd": "."
+  },
+
+  "meta": {
+    "description": "Export HTML to high-resolution PNG and PDF. Supports artboards, paginated documents, and newsletters.",
+    "author": "CO-LLAB",
+    "license": "MIT",
+    "category": "document-processing",
+    "tags": ["export", "pdf", "png", "html", "screenshot", "playwright"],
+    "icon": "📄"
+  }
+}

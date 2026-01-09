@@ -1,0 +1,22 @@
+{
+  "name": "@rudi/registry",
+  "version": "2.0.0",
+  "description": "RUDI Registry - Source of truth for stacks, runtimes, binaries, and agents",
+  "type": "module",
+  "scripts": {
+    "validate:v2": "tsx src/validate.ts",
+    "validate": "npm run validate:v2",
+    "compile": "tsx src/compile.ts",
+    "build": "npm run validate && npm run compile",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "fast-glob": "^3.3.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^4.0.16"
+  }
+}

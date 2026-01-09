@@ -1,0 +1,136 @@
+name: Registry CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'catalog/**'
+      - 'schemas/**'
+      - 'src/**'
+      - 'package.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'catalog/**'
+      - 'schemas/**'
+      - 'src/**'
+      - 'package.json'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate & Compile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate v2 manifests
+        run: npm run validate:v2
+
+      - name: Compile registry index
+        run: npm run compile
+
+      - name: Upload dist artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: registry-dist
+          path: dist/
+          retention-days: 30
+
+  release:
+    name: Release
+    needs: validate
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build registry
+        run: npm run build
+
+      - name: Get version and date
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          DATE=$(date +%Y%m%d)
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "date=${DATE}" >> $GITHUB_OUTPUT
+          echo "tag=v${VERSION}-${DATE}" >> $GITHUB_OUTPUT
+
+      - name: Create release tarball
+        run: |
+          mkdir -p release
+          tar -czf release/registry-v2.tgz \
+            catalog/ \
+            schemas/ \
+            dist/ \
+            SCHEMA.md
+          sha256sum release/registry-v2.tgz > release/registry-v2.tgz.sha256
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: registry-release
+          path: release/
+          retention-days: 90
+
+      # Optional: Create GitHub Release on tags
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release/registry-v2.tgz
+            release/registry-v2.tgz.sha256
+            dist/index.json
+            dist/release.json
+          generate_release_notes: true
+
+  # Cross-platform validation
+  validate-platforms:
+    name: Validate (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate v2 manifests
+        run: npm run validate:v2

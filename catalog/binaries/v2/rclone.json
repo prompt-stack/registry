@@ -1,0 +1,40 @@
+{
+  "id": "binary:rclone",
+  "kind": "binary",
+  "name": "rclone",
+  "version": "1.68.2",
+
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://downloads.rclone.org/v1.68.2/rclone-v1.68.2-osx-arm64.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip", "strip": 1 }
+      },
+      "darwin-x64": {
+        "url": "https://downloads.rclone.org/v1.68.2/rclone-v1.68.2-osx-amd64.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip", "strip": 1 }
+      },
+      "linux-x64": {
+        "url": "https://downloads.rclone.org/v1.68.2/rclone-v1.68.2-linux-amd64.zip",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "zip", "strip": 1 }
+      }
+    }
+  },
+
+  "bins": ["rclone"],
+
+  "detect": {
+    "command": "rclone --version",
+    "expectExitCode": 0
+  },
+
+  "meta": {
+    "description": "Cloud storage CLI (Google Drive, S3, Dropbox, 40+ providers)",
+    "category": "utilities"
+  }
+}

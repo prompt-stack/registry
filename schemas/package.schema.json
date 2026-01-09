@@ -1,0 +1,458 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://learn-rudi.dev/schemas/registry/v2/package.schema.json",
+  "title": "RUDI Registry Package Schema v2",
+  "description": "Unified schema for all RUDI package types: runtime, binary, agent, stack, prompt",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": ["id", "kind", "name", "version", "delivery", "install"],
+
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(runtime|binary|agent|stack|prompt):[a-z0-9][a-z0-9-_]*$",
+      "description": "Package identifier with kind prefix (e.g., binary:ffmpeg, stack:video-editor)"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["runtime", "binary", "agent", "stack", "prompt"],
+      "description": "Package type"
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(runtime|binary|agent|stack|prompt):[a-z0-9][a-z0-9-_]*$"
+      },
+      "description": "Alternative IDs that resolve to this package (e.g., agent:ollama -> runtime:ollama)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable display name"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Semantic version, 'latest' (npm/pip only), or 'system'"
+    },
+
+    "delivery": {
+      "type": "string",
+      "enum": ["remote", "system", "bundled"],
+      "description": "Distribution policy: remote (fetched), system (pre-installed), bundled (future)"
+    },
+
+    "install": { "$ref": "#/$defs/Install" },
+
+    "bins": { "$ref": "#/$defs/Bins" },
+
+    "detect": { "$ref": "#/$defs/Detect" },
+
+    "installHints": { "$ref": "#/$defs/InstallHints" },
+
+    "auth": { "$ref": "#/$defs/Auth" },
+
+    "meta": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Display and categorization metadata"
+    },
+
+    "runtime": {
+      "type": "string",
+      "enum": ["node", "python", "deno", "bun"],
+      "description": "Required runtime for stacks"
+    },
+    "requires": { "$ref": "#/$defs/Requires" },
+    "provides": { "$ref": "#/$defs/Provides" },
+    "mcp": { "$ref": "#/$defs/Mcp" }
+  },
+
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "enum": ["runtime", "binary", "agent"] } } },
+      "then": { "required": ["bins"] }
+    },
+
+    {
+      "if": { "properties": { "kind": { "const": "stack" } } },
+      "then": {
+        "required": ["runtime", "mcp", "provides"],
+        "properties": {
+          "install": { "properties": { "source": { "const": "catalog" } } }
+        }
+      }
+    },
+
+    {
+      "if": { "properties": { "kind": { "const": "prompt" } } },
+      "then": {
+        "properties": {
+          "install": { "properties": { "source": { "const": "catalog" } } }
+        }
+      }
+    },
+
+    {
+      "if": { "properties": { "kind": { "const": "runtime" } } },
+      "then": {
+        "properties": {
+          "install": { "properties": { "source": { "const": "download" } } }
+        }
+      }
+    },
+
+    {
+      "if": {
+        "properties": {
+          "install": {
+            "properties": { "source": { "const": "download" } },
+            "required": ["source"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "version": { "not": { "const": "latest" } },
+          "install": { "required": ["platforms"] }
+        }
+      }
+    },
+
+    {
+      "if": {
+        "properties": {
+          "install": {
+            "properties": { "source": { "enum": ["npm", "pip"] } },
+            "required": ["source"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "install": { "required": ["package"] }
+        }
+      }
+    },
+
+    {
+      "if": {
+        "anyOf": [
+          { "properties": { "delivery": { "const": "system" } } },
+          {
+            "properties": {
+              "install": {
+                "properties": { "source": { "const": "system" } },
+                "required": ["source"]
+              }
+            }
+          }
+        ]
+      },
+      "then": { "required": ["detect"] }
+    }
+  ],
+
+  "$defs": {
+    "Install": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": ["download", "npm", "pip", "system", "catalog"],
+          "description": "Acquisition method"
+        },
+        "package": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Package name for npm/pip sources"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Catalog path for catalog sources (derived from id if omitted)"
+        },
+        "platforms": { "$ref": "#/$defs/Platforms" }
+      }
+    },
+
+    "Platforms": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/PlatformSpec" },
+      "description": "Platform-specific configurations keyed by platform identifier"
+    },
+
+    "PlatformSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": ["download", "npm", "pip", "system", "catalog"],
+          "description": "Override source for this platform"
+        },
+        "delivery": {
+          "type": "string",
+          "enum": ["remote", "system", "bundled"],
+          "description": "Override delivery for this platform"
+        },
+
+        "preinstalled": {
+          "type": "boolean",
+          "description": "Whether tool is pre-installed on this platform"
+        },
+
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Download URL for this platform"
+        },
+        "checksum": { "$ref": "#/$defs/Checksum" },
+        "extract": { "$ref": "#/$defs/Extract" },
+
+        "detect": { "$ref": "#/$defs/Detect" },
+        "installHints": { "$ref": "#/$defs/InstallHints" },
+
+        "package": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Override package name for this platform"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Override path for this platform"
+        }
+      },
+
+      "allOf": [
+        {
+          "if": {
+            "properties": { "source": { "const": "download" } },
+            "required": ["source"]
+          },
+          "then": { "required": ["url", "checksum"] }
+        },
+        {
+          "if": {
+            "properties": { "source": { "enum": ["npm", "pip"] } },
+            "required": ["source"]
+          },
+          "then": { "required": ["package"] }
+        }
+      ]
+    },
+
+    "Checksum": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algo", "value"],
+      "properties": {
+        "algo": {
+          "type": "string",
+          "enum": ["sha256"],
+          "description": "Checksum algorithm"
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$",
+          "description": "64-character hex SHA256 hash"
+        }
+      }
+    },
+
+    "Extract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["zip", "tar.gz", "tar.xz", "raw"],
+          "description": "Archive format"
+        },
+        "strip": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of leading directories to strip"
+        },
+        "subdir": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Subdirectory to extract"
+        }
+      }
+    },
+
+    "Bins": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "description": "Simple list of binary names"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path"],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Path to binary within extracted archive"
+              }
+            }
+          },
+          "description": "Mapped binary names to paths"
+        }
+      ]
+    },
+
+    "Detect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command"],
+      "properties": {
+        "command": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Command to verify tool is installed"
+        },
+        "expectExitCode": {
+          "type": "integer",
+          "default": 0,
+          "description": "Expected exit code (default: 0)"
+        }
+      }
+    },
+
+    "InstallHints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "brew": { "type": "string", "description": "Homebrew install command" },
+        "apt": { "type": "string", "description": "apt install command" },
+        "dnf": { "type": "string", "description": "dnf install command" },
+        "pacman": { "type": "string", "description": "pacman install command" },
+        "winget": { "type": "string", "description": "winget install command" },
+        "choco": { "type": "string", "description": "Chocolatey install command" },
+        "manual": { "type": "string", "description": "Manual installation instructions" }
+      }
+    },
+
+    "Auth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "command"],
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Whether authentication is required"
+        },
+        "command": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Command to authenticate"
+        },
+        "instructions": {
+          "type": "string",
+          "description": "Human-readable auth instructions"
+        }
+      }
+    },
+
+    "Requires": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "binaries": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Required binary dependencies"
+        },
+        "secrets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Secret" },
+          "description": "Required secrets/API keys"
+        }
+      }
+    },
+
+    "Secret": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "label", "required"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Environment variable name"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable label"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether this secret is required"
+        },
+        "helpUrl": {
+          "type": "string",
+          "description": "URL with instructions to obtain this secret"
+        }
+      }
+    },
+
+    "Provides": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tools": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "MCP tools this stack exposes"
+        }
+      }
+    },
+
+    "Mcp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["transport", "command"],
+      "properties": {
+        "transport": {
+          "type": "string",
+          "enum": ["stdio", "http"],
+          "description": "MCP transport type"
+        },
+        "command": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Command to start MCP server"
+        },
+        "args": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Command arguments"
+        },
+        "env": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Environment variables"
+        },
+        "cwd": {
+          "type": "string",
+          "description": "Working directory"
+        }
+      }
+    }
+  }
+}

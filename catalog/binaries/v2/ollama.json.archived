@@ -1,0 +1,46 @@
+{
+  "id": "binary:ollama",
+  "kind": "binary",
+  "name": "Ollama",
+  "version": "0.5.4",
+
+  "delivery": "remote",
+  "install": {
+    "source": "download",
+    "platforms": {
+      "darwin-arm64": {
+        "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-darwin",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "raw" }
+      },
+      "darwin-x64": {
+        "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-darwin",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "raw" }
+      },
+      "linux-x64": {
+        "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-linux-amd64",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "raw" }
+      },
+      "linux-arm64": {
+        "url": "https://github.com/ollama/ollama/releases/download/v0.5.4/ollama-linux-arm64",
+        "checksum": { "algo": "sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+        "extract": { "type": "raw" }
+      }
+    }
+  },
+
+  "bins": ["ollama"],
+
+  "detect": {
+    "command": "ollama --version",
+    "expectExitCode": 0
+  },
+
+  "meta": {
+    "description": "Run local LLMs and embedding models (Llama, Mistral, nomic-embed-text)",
+    "category": "ai",
+    "homepage": "https://ollama.ai"
+  }
+}
