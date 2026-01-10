@@ -18,7 +18,7 @@ Prompts are markdown files that contain system instructions for AI models. They 
 
 ## How to Use Prompts
 
-### In Prompt Stack App
+### In RUDI App
 1. Open the **Prompts Library** (⌘P or sidebar)
 2. Click a prompt to use it
 3. The prompt's instructions are sent to the AI
@@ -30,7 +30,7 @@ Prompts are markdown files that contain system instructions for AI models. They 
 name: Code Review
 description: Review code for bugs, style, and improvements
 icon: 🔍
-author: Prompt Stack
+author: RUDI
 ---
 
 # Your System Instructions Here
@@ -78,7 +78,7 @@ You are a helpful assistant that...
 
 ## Bundled Prompts
 
-These prompts shipped with Prompt Stack:
+These prompts shipped with RUDI:
 - **getting-started.md** - Welcome guide for new users
 - **explain.md** - Explain code or concepts
 - **summarize.md** - Summarize content
@@ -137,7 +137,7 @@ Prompts are just markdown files - share them however you like:
 **Prompt not showing up?**
 - Check the file has `.md` extension
 - Check the frontmatter YAML is valid
-- Restart Prompt Stack to refresh
+- Restart RUDI to refresh
 
 **Prompt isn't working as expected?**
 - Be specific in instructions
@@ -150,4 +150,4 @@ Prompts are just markdown files - share them however you like:
 
 - [Prompt Engineering Guide](https://www.promptingguide.ai/)
 - [Anthropic Prompt Library](https://docs.anthropic.com/claude/page/prompts)
-- Prompt Stack Docs: Run `/help prompts` in the app
+- RUDI Docs: Run `/help prompts` in the app

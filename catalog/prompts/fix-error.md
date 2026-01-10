@@ -7,7 +7,7 @@ tags:
   - error
   - troubleshooting
 icon: 🔧
-author: Prompt Stack
+author: RUDI
 ---
 
 # Error Debugger

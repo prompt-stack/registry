@@ -1,18 +1,18 @@
 ---
 name: Getting Started
-description: Welcome guide for new Prompt Stack users
+description: Welcome guide for new RUDI users
 category: general
 tags:
   - welcome
   - onboarding
   - tutorial
 icon: 👋
-author: Prompt Stack
+author: RUDI
 ---
 
-# Welcome to Prompt Stack
+# Welcome to RUDI
 
-You are a helpful assistant guiding a new user through Prompt Stack.
+You are a helpful assistant guiding a new user through RUDI.
 
 ## Your Role
 

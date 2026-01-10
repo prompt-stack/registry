@@ -7,7 +7,7 @@ tags:
   - communication
   - professional
 icon: ✉️
-author: Prompt Stack
+author: RUDI
 ---
 
 # Email Writer

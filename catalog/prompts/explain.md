@@ -7,7 +7,7 @@ tags:
   - education
   - concepts
 icon: 💡
-author: Prompt Stack
+author: RUDI
 ---
 
 # Explain Like I'm Learning

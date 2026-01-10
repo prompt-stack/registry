@@ -34,13 +34,13 @@ Describe what this stack does and when to use it.
 
 This stack requires **Python**. If not installed:
 ```bash
-pstack install runtime:python
+rudi install runtime:python
 ```
 
 ## Usage
 
 ```bash
-pstack run stack:example-stack --input '{"param": "value"}'
+rudi run stack:example-stack --input '{"param": "value"}'
 ```
 
 ## Parameters
@@ -52,7 +52,7 @@ pstack run stack:example-stack --input '{"param": "value"}'
 ## Example
 
 ```bash
-pstack run stack:example-stack --input '{"param": "hello"}'
+rudi run stack:example-stack --input '{"param": "hello"}'
 ```
 
 ## Output

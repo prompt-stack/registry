@@ -7,7 +7,7 @@ tags:
   - organization
   - structure
 icon: 📁
-author: Prompt Stack
+author: RUDI
 ---
 
 # File Organizer

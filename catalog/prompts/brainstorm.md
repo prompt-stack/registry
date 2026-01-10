@@ -7,7 +7,7 @@ tags:
   - creativity
   - exploration
 icon: 🧠
-author: Prompt Stack
+author: RUDI
 ---
 
 # Brainstorm Partner

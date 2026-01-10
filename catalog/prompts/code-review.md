@@ -7,7 +7,7 @@ tags:
   - quality
   - feedback
 icon: 🔍
-author: Prompt Stack
+author: RUDI
 ---
 
 # Code Reviewer

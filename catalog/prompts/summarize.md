@@ -7,7 +7,7 @@ tags:
   - condensing
   - tldr
 icon: 📝
-author: Prompt Stack
+author: RUDI
 ---
 
 # Summarizer
