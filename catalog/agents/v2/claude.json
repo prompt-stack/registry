@@ -6,8 +6,13 @@
 
   "delivery": "remote",
   "install": {
-    "source": "npm",
-    "package": "@anthropic-ai/claude-code"
+    "source": "native-installer",
+    "nativeInstaller": {
+      "darwin": "curl -fsSL https://claude.ai/install.sh | sh",
+      "linux": "curl -fsSL https://claude.ai/install.sh | sh",
+      "win32": "irm https://claude.ai/install.ps1 | iex"
+    },
+    "nativeBinPath": ".local/bin/claude"
   },
 
   "bins": ["claude"],

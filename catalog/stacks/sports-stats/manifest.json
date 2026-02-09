@@ -1,0 +1,37 @@
+{
+  "id": "sports-stats",
+  "name": "Sports Stats",
+  "version": "1.0.0",
+  "description": "Extract and query sports statistics from Basketball Reference, ESPN, and other sports sites",
+  "runtime": "node",
+  "command": [
+    "npx",
+    "tsx",
+    "src/index.ts"
+  ],
+  "provides": {
+    "tools": [
+      "extract_nba_stats",
+      "save_nba_splits",
+      "query_nba_db"
+    ]
+  },
+  "requires": {
+    "binaries": [],
+    "secrets": []
+  },
+  "meta": {
+    "author": "CO-LLAB",
+    "license": "MIT",
+    "category": "data-extraction",
+    "tags": [
+      "sports",
+      "nba",
+      "basketball",
+      "statistics",
+      "analytics",
+      "basketball-reference"
+    ],
+    "icon": "🏀"
+  }
+}

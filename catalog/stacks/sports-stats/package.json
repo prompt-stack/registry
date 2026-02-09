@@ -1,0 +1,23 @@
+{
+  "name": "sports-stats",
+  "version": "1.0.0",
+  "description": "Sports statistics extraction MCP - NBA, Basketball Reference, ESPN",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "npx tsx src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.6.1",
+    "better-sqlite3": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/better-sqlite3": "^7.6.11",
+    "tsx": "^4.21.0",
+    "typescript": "^5.3.0"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "video-transcribe",
+  "name": "Video Transcribe",
+  "version": "1.0.0",
+  "description": "Extract audio from video files and transcribe using local Whisper",
+  "runtime": "python",
+  "command": [
+    "python3",
+    "src/index.py"
+  ],
+  "provides": {
+    "tools": [
+      "extract_audio_from_video",
+      "transcribe_audio",
+      "process_video_full"
+    ]
+  },
+  "requires": {
+    "binaries": [
+      "ffmpeg",
+      "whisper-cli"
+    ],
+    "secrets": []
+  },
+  "meta": {
+    "author": "hoff",
+    "license": "MIT",
+    "category": "media-processing",
+    "tags": [
+      "video",
+      "audio",
+      "transcription",
+      "whisper",
+      "ffmpeg",
+      "local"
+    ],
+    "icon": "🎬"
+  }
+}
